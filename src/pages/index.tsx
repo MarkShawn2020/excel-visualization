@@ -1,7 +1,8 @@
-import LocationAggregatorMap from '@/components/deck.gl/PiotrDev'
-
 import { Header } from '@/components/header'
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
+
+const LocationAggregatorMap = dynamic(() => import('../components/deck.gl/PiotrDev'), { ssr: false })
 
 
 export default function Home() {
