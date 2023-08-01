@@ -3,7 +3,7 @@ import fs from 'fs'
 
 console.log({ coordinates })
 
-const data = coordinates.map((item, index) => ({
+const tableData = coordinates.map((item, index) => ({
 	coordinates: item,
 	index,
 	v1: Math.random() * 100,
@@ -11,10 +11,22 @@ const data = coordinates.map((item, index) => ({
 }))
 
 
-fs.writeFileSync(
-	'./data/table.json',
-	JSON.stringify(data, null, 2),
-	{ encoding: 'utf-8' },
-)
+const geoData = {
+	'type': 'FeatureCollection',
+	features: tableData.map((item) => ({
+		type: 'Feature',
+		geometry: {
+			type: 'Point',
+			coordinates: [
+				item,
+				item.v1, // todo: data structure
+			],
+		},
+	})),
+}
+
+
+fs.writeFileSync('./data/table.json', JSON.stringify(tableData, null, 2), { encoding: 'utf-8' })
+fs.writeFileSync('./data/data.geojson', JSON.stringify(tableData, null, 2), { encoding: 'utf-8' })
 
 
