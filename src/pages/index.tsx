@@ -1,14 +1,12 @@
 import { Header } from '@/components/header'
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import data from '../coordinates.json'
 
 const LocationAggregatorMap = dynamic(() => import('../components/deck.gl/PiotrDev'), { ssr: false })
 
 
 export default function Home() {
 	const [details, setDetails] = useState([])
-	const coordinates = data.coordinates.map((item) => [item.lon, item.lat])
 	// const [coordinates, setCoordinates] = useState([])
 	//
 	// useEffect(() => {
@@ -29,7 +27,6 @@ export default function Home() {
 	// 	}
 	// 	getData()
 	// }, [])
-	console.log(coordinates)
 	
 	return (
 		<>
@@ -37,7 +34,7 @@ export default function Home() {
 			
 			<main className={'w-screen h-screen bg-cyan-800'}>
 				
-				<LocationAggregatorMap data={coordinates}/>
+				<LocationAggregatorMap/>
 			
 			</main>
 		</>

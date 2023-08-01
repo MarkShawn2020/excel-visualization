@@ -6,11 +6,34 @@ import React, { useState } from 'react'
 import Map from 'react-map-gl'
 import DeckGL from '@deck.gl/react/typed'
 import 'mapbox-gl/dist/mapbox-gl.css'
+import data from '../../data.json'
 
 // import map config
-import { INITIAL_VIEW_STATE, lightingEffect } from '@/lib/mapconfig'
-import { Tooltip } from '@/components/deck.gl/tooltip'
+import IconClusterLayer from '@/components/deck.gl/icon-cluster-layer'
+import { IconLayer, ScatterplotLayer } from '@deck.gl/layers/typed'
+import { MapView } from '@deck.gl/core/typed'
+
+import maplibregl from 'maplibre-gl'
+import { INITIAL_VIEW_STATE } from '@/lib/mapconfig'
 import { mapBox } from '@/config'
+
+
+const layer = new ScatterplotLayer({
+	id: 'scatterplot-layer',
+	data,
+	pickable: true,
+	opacity: 0.8,
+	stroked: true,
+	filled: true,
+	radiusScale: 100,
+	radiusMinPixels: 1,
+	radiusMaxPixels: 100,
+	lineWidthMinPixels: 1,
+	getPosition: d => d.coordinates,
+	getRadius: d => d.size,
+	getFillColor: d => [255, 0, 0],
+	getLineColor: d => [0, 0, 0],
+})
 
 // creating tooltip
 export function getTooltip({ object }) {
@@ -29,30 +52,27 @@ export function getTooltip({ object }) {
 
 const LocationAggregatorMap = (
 	{
-		upperPercentile = 100,
-		coverage = 1,
-		data,
+		iconMapping = 'data/location-icon-mapping.json',
+		iconAtlas = 'data/location-icon-atlas.png',
+		showCluster = true,
+		mapStyle = mapBox.style,
 	}) => {
 	
 	const [radius, setRadius] = useState(1000)
 	
+	
 	return (
 		<div>
 			<DeckGL
-				// layers={layers}
-				getTooltip={getTooltip}
-				effects={[lightingEffect]}
+				layers={[layer]}
 				initialViewState={INITIAL_VIEW_STATE}
-				controller={true}
+				controller={{ dragRotate: false }}
 			>
-				<Map
-					className=""
-					controller={true}
-					mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
-					mapStyle={mapBox.style}
-				/>
 				
-				<Tooltip data={data} radius={radius} setRadius={setRadius}/>
+				<Map
+					mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
+					reuseMaps
+					mapStyle={mapStyle} preventStyleDiffing={true}/>
 			
 			</DeckGL>
 		</div>
