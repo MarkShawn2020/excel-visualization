@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import Map from 'react-map-gl'
+import Map, { Layer } from 'react-map-gl'
 import DeckGL from '@deck.gl/react'
 
 import { INITIAL_VIEW_STATE } from '@/lib/mapconfig'
@@ -20,6 +20,7 @@ import { HexagonLayer } from '@deck.gl/aggregation-layers'
 
 import { DataFilterExtension } from '@deck.gl/extensions'
 import { AmbientLight, LightingEffect, PointLight } from '@deck.gl/core'
+import { clusterCountLayer, clusterLayer } from '@/components/deck.gl/layers'
 
 export const colorRange = [
 	[1, 152, 189],
@@ -131,6 +132,7 @@ const LocationAggregatorMap = ({
 					mapStyle={mapBox.style}
 					preventStyleDiffing={true}
 				>
+					
 					<DrawControl
 						position="top-left"
 						displayControlsDefault={false}
