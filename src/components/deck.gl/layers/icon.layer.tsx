@@ -1,4 +1,4 @@
-import { IconLayer } from '@deck.gl/layers/typed'
+import { IconLayer } from '@deck.gl/layers'
 import data from '@/../data/table.json'
 import 'mapbox-gl/dist/mapbox-gl.css'
 

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@danmarshall/deckgl-typings": "^4.0.0",
     "@deck.gl/aggregation-layers": "^8.9.22",
     "@deck.gl/core": "^8.9.22",
     "@deck.gl/geo-layers": "^8.9.22",
