@@ -8,9 +8,21 @@ export const mapBox = {
 }
 
 
-export enum Columns {
+export enum ColumnType {
 	v1 = 'v1',
 	v2 = 'v2'
 }
 
-export const VALUE_RANGE = [0, 200]
+export interface IColumn {
+	range: number[]
+}
+
+export const Columns: Record<ColumnType, IColumn> = {
+	[ColumnType.v1]: {
+		range: [0, 100],
+	},
+	[ColumnType.v2]: {
+		range: [0, 200],
+	},
+}
+

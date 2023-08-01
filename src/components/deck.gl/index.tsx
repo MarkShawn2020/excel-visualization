@@ -1,41 +1,21 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 
 import Map from 'react-map-gl'
 import DeckGL from '@deck.gl/react'
 
 import { INITIAL_VIEW_STATE } from '@/lib/mapconfig'
-import { Columns, mapBox, VALUE_RANGE } from '@/config'
+import { Columns, ColumnType, mapBox } from '@/config'
 import { LanguageControl } from '@/components/deck.gl/controls/language.control'
 import { DrawControl } from '@/components/deck.gl/controls/draw.control'
 import { DataFilterExtension } from '@deck.gl/extensions'
 import { ScatterplotLayer } from '@deck.gl/layers'
 import data from '../../../data/table.json'
-import { FilterCol } from '@/components/deck.gl/extensions/filter-col'
-import { SelectContent, SelectItem, SelectTrigger, Select, SelectGroup, SelectValue } from '@/components/ui/select'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { useStoreBear } from '@/store'
 import { Slider } from '@/components/ui/slider'
-
-
-export const SelectCol = () => {
-	return (
-		<Select>
-			<SelectTrigger>
-				<SelectValue placeholder={'select one column'}/>
-			</SelectTrigger>
-			
-			<SelectContent>
-				<SelectGroup>
-					{Object.values(Columns).map((col) => (
-						<SelectItem value={col} key={col}>{col}</SelectItem>
-					))}
-				</SelectGroup>
-			</SelectContent>
-		</Select>
-	)
-}
 
 
 const LocationAggregatorMap = () => {
@@ -54,11 +34,11 @@ const LocationAggregatorMap = () => {
 		radiusMaxPixels: 100,
 		lineWidthMinPixels: 1,
 		getPosition: d => d.coordinates,
-		getRadius: d => d[Columns.v1],
+		getRadius: d => d[ColumnType.v1],
 		getFillColor: d => [255, 0, 0],
 		getLineColor: d => [0, 0, 0],
 		
-		getFilterValue: d => d[Columns.v1],
+		getFilterValue: d => d[ColumnType.v1],
 		filterRange: range.value,
 		extensions: [
 			dataFilter,
@@ -114,12 +94,36 @@ const LocationAggregatorMap = () => {
 						</TableRow>
 					</TableHeader>
 					<TableBody>
+						
+						<TableRow>
+							<TableCell>Select Column</TableCell>
+							<TableCell>
+								<Select
+									defaultValue={ColumnType.v1}
+									onValueChange={(col) => {
+										setColumn(col)
+										setRangeScope(Columns[col].range)
+										setRangeValue(Columns[col].range)
+									}}>
+									<SelectTrigger>
+										<SelectValue/>
+									</SelectTrigger>
+									<SelectContent>
+										<SelectItem value={ColumnType.v1}>{ColumnType.v1}</SelectItem>
+										<SelectItem value={ColumnType.v2}>{ColumnType.v2}</SelectItem>
+									</SelectContent>
+								</Select>
+							</TableCell>
+						</TableRow>
+						
 						<TableRow>
 							<TableCell>Range({range.scope.join('-')})</TableCell>
 							<TableCell>
 								<Slider defaultValue={range.value} min={range.scope[0]} max={range.scope[1]} step={1} onValueChange={setRangeValue}/>
 							</TableCell>
 						</TableRow>
+					
+					
 					</TableBody>
 				</Table>
 			</div>

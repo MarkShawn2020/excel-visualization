@@ -1,17 +1,17 @@
 import { create } from 'zustand'
 import { combine } from 'zustand/middleware'
 import { produce } from 'immer'
-import { Columns, VALUE_RANGE } from '@/config'
+import { Columns, ColumnType } from '@/config'
 
 export const useStoreBear = create(combine({
-	col: Columns.v1,
+	col: ColumnType.v1,
 	range: {
-		value: VALUE_RANGE,
-		scope: VALUE_RANGE,
+		value: Columns[ColumnType.v1].range,
+		scope: Columns[ColumnType.v1].range,
 	},
 	
 }, (set) => ({
-	setColumn: (v: Columns) => set(produce((state) => {state.col = v})),
+	setColumn: (v: ColumnType) => set(produce((state) => {state.col = v})),
+	setRangeScope: (v: number[]) => set(produce((state) => {state.range.scope = v})),
 	setRangeValue: (v: number[]) => set(produce((state) => {state.range.value = v})),
-	setRangeScope: (v: number[]) => set(produce((state) => {state.scope.value = v})),
 })))
