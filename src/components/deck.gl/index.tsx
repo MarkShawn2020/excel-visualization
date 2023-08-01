@@ -6,17 +6,18 @@ import Map from 'react-map-gl'
 import DeckGL from '@deck.gl/react'
 
 import { INITIAL_VIEW_STATE } from '@/lib/mapconfig'
-import { mapBox } from '@/config'
+import { Columns, mapBox, VALUE_RANGE } from '@/config'
 import { LanguageControl } from '@/components/deck.gl/controls/language.control'
 import { DrawControl } from '@/components/deck.gl/controls/draw.control'
 import { DataFilterExtension } from '@deck.gl/extensions'
 import { ScatterplotLayer } from '@deck.gl/layers'
 import data from '../../../data/table.json'
-import { FilterCol, VALUE_RANGE } from '@/components/deck.gl/extensions/filter-col'
+import { FilterCol } from '@/components/deck.gl/extensions/filter-col'
 import { SelectContent, SelectItem, SelectTrigger, Select, SelectGroup, SelectValue } from '@/components/ui/select'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { useStoreBear } from '@/store'
+import { Slider } from '@/components/ui/slider'
 
-export const columns = ['v1', 'v2']
 
 export const SelectCol = () => {
 	return (
@@ -27,7 +28,7 @@ export const SelectCol = () => {
 			
 			<SelectContent>
 				<SelectGroup>
-					{columns.map((col) => (
+					{Object.values(Columns).map((col) => (
 						<SelectItem value={col} key={col}>{col}</SelectItem>
 					))}
 				</SelectGroup>
@@ -38,14 +39,9 @@ export const SelectCol = () => {
 
 
 const LocationAggregatorMap = () => {
-	const [filter, setFilter] = useState(VALUE_RANGE)
+	const { col, range, setColumn, setRangeValue, setRangeScope } = useStoreBear()
 	
-	const dataFilter = new DataFilterExtension({
-		filterSize: 1,
-		// Enable for higher precision, e.g. 1 second granularity
-		// See DataFilterExtension documentation for how to pick precision
-		fp64: false,
-	})
+	const dataFilter = new DataFilterExtension({ filterSize: 1, fp64: false })
 	
 	const scatterLayer = new ScatterplotLayer<{ coordinates: number[] }>({
 		id: 'scatterplot-layer',
@@ -58,12 +54,12 @@ const LocationAggregatorMap = () => {
 		radiusMaxPixels: 100,
 		lineWidthMinPixels: 1,
 		getPosition: d => d.coordinates,
-		getRadius: d => d.v1,
+		getRadius: d => d[Columns.v1],
 		getFillColor: d => [255, 0, 0],
 		getLineColor: d => [0, 0, 0],
 		
-		getFilterValue: d => d.v1,
-		filterRange: [filter[0], filter[1]],
+		getFilterValue: d => d[Columns.v1],
+		filterRange: range.value,
 		extensions: [
 			dataFilter,
 		],
@@ -119,8 +115,10 @@ const LocationAggregatorMap = () => {
 					</TableHeader>
 					<TableBody>
 						<TableRow>
-							<TableCell>Range({VALUE_RANGE.join(', ')})</TableCell>
-							<TableCell><FilterCol setRange={setFilter}/></TableCell>
+							<TableCell>Range({range.scope.join('-')})</TableCell>
+							<TableCell>
+								<Slider defaultValue={range.value} min={range.scope[0]} max={range.scope[1]} step={1} onValueChange={setRangeValue}/>
+							</TableCell>
 						</TableRow>
 					</TableBody>
 				</Table>
