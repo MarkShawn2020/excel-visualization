@@ -59,8 +59,12 @@ const LocationAggregatorMap = () => {
 				]}
 				initialViewState={INITIAL_VIEW_STATE}
 				controller={{ dragRotate: false }}
-				getTooltip={({ object }) => object && `${object.coordinates}`}
-			
+				getTooltip={({ object }) => object && {
+					html: Object.entries(object).map(([key, val]) => (
+						`<div>${key}: ${val}</div>`
+					)).join(''),
+				}
+				}
 			>
 				
 				<Map
