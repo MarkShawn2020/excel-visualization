@@ -12,21 +12,27 @@ import { DrawControl } from '@/components/deck.gl/controls/draw.control'
 import { DataFilterExtension } from '@deck.gl/extensions'
 import { ScatterplotLayer } from '@deck.gl/layers'
 import data from '../../../data/table.json'
-import { Slider } from '@/components/ui/slider'
-import { SliderRange } from '@radix-ui/react-slider'
+import { FilterCol, VALUE_RANGE } from '@/components/deck.gl/extensions/filter-col'
+import { SelectContent, SelectItem, SelectTrigger, Select, SelectGroup, SelectValue } from '@/components/ui/select'
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
-export const VALUE_RANGE = [0, 200]
+export const columns = ['v1', 'v2']
 
-export const RangeInput = ({ setRange }: {
-	setRange: (values: number[]) => void
-}) => {
+export const SelectCol = () => {
 	return (
-		<div className={'absolute inset-4 rounded-md p-4 w-80 h-40 bg-cyan-800 flex justify-center items-center text-slate-200 whitespace-nowrap'}>
-			<div className={'flex w-full gap-2'}>
-				<p>Range({VALUE_RANGE.join(', ')}): </p>
-				<Slider defaultValue={VALUE_RANGE} min={VALUE_RANGE[0]} max={VALUE_RANGE[1]} step={1} onValueChange={setRange}/>
-			</div>
-		</div>
+		<Select>
+			<SelectTrigger>
+				<SelectValue placeholder={'select one column'}/>
+			</SelectTrigger>
+			
+			<SelectContent>
+				<SelectGroup>
+					{columns.map((col) => (
+						<SelectItem value={col} key={col}>{col}</SelectItem>
+					))}
+				</SelectGroup>
+			</SelectContent>
+		</Select>
 	)
 }
 
@@ -102,7 +108,23 @@ const LocationAggregatorMap = () => {
 			
 			</DeckGL>
 			
-			<RangeInput setRange={setFilter}/>
+			<div className={'dark absolute inset-4 w-80 h-60 rounded-lg p-4 | bg-cyan-900 text-slate-200 font-medium'}>
+				<Table className={'caption-top'}>
+					<TableCaption>A list of your recent invoices.</TableCaption>
+					<TableHeader>
+						<TableRow>
+							<TableHead className={'w-[150px]'}>Item</TableHead>
+							<TableHead>Operation</TableHead>
+						</TableRow>
+					</TableHeader>
+					<TableBody>
+						<TableRow>
+							<TableCell>Range({VALUE_RANGE.join(', ')})</TableCell>
+							<TableCell><FilterCol setRange={setFilter}/></TableCell>
+						</TableRow>
+					</TableBody>
+				</Table>
+			</div>
 		</div>
 	)
 }

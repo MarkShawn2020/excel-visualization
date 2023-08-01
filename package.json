@@ -20,6 +20,7 @@
     "@loaders.gl/csv": "^3.4.8",
     "@mapbox/mapbox-gl-draw": "^1.4.2",
     "@mapbox/mapbox-gl-language": "^1.0.1",
+    "@radix-ui/react-select": "^1.2.2",
     "@radix-ui/react-slider": "^1.1.2",
     "@types/node": "20.4.5",
     "@types/react": "18.2.18",
