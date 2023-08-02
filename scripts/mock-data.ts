@@ -1,32 +1,35 @@
 import coordinates from '../data/coordinates.json'
 import fs from 'fs'
+import { IViewState, Point } from '@/ds'
 
-console.log({ coordinates })
 
-const tableData = coordinates.map((item, index) => ({
-	coordinates: item,
-	index,
-	v1: Math.random() * 100,
-	v2: Math.random() * 100 + (Math.random() > 0.5) * 100,
+const geoData: Point[] = coordinates.map((item, index) => ({
+	type: 'Feature',
+	properties: {
+		cluster: false,
+		cluster_id: index,
+		point_count: 1,
+		value: Math.floor(Math.random() * 100),
+	},
+	geometry: {
+		type: 'Point',
+		coordinates: item,
+	},
 }))
 
-
-const geoData = {
+const fullData = {
 	'type': 'FeatureCollection',
-	features: tableData.map((item) => ({
-		type: 'Feature',
-		geometry: {
-			type: 'Point',
-			coordinates: [
-				item,
-				item.v1, // todo: data structure
-			],
+	'crs': {
+		'type': 'name',
+		'properties': {
+			'name': 'urn:ogc:def:crs:OGC:1.3:CRS84',
 		},
-	})),
+	},
+	'features': geoData,
 }
 
 
-fs.writeFileSync('./data/table.json', JSON.stringify(tableData, null, 2), { encoding: 'utf-8' })
-fs.writeFileSync('./data/data.geojson', JSON.stringify(tableData, null, 2), { encoding: 'utf-8' })
+fs.writeFileSync('./data/features.geo.json', JSON.stringify(geoData, null, 2), { encoding: 'utf-8' })
+fs.writeFileSync('./data/full.geo.json', JSON.stringify(fullData, null, 2), { encoding: 'utf-8' })
 
 

@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
+module.exports = {
+	experimental: {
+		// esmExternals: 'loose', // ref: https://nextjs.org/docs/messages/import-esm-externals
+	},
+	reactStrictMode: true,
 }
 
-module.exports = nextConfig

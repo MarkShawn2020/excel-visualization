@@ -16,8 +16,10 @@ export const clusterCountLayer: LayerProps = {
 	type: 'symbol',
 	source: 'earthquakes',
 	filter: ['has', 'point_count'],
+	
 	layout: {
-		'text-field': '{point_count_abbreviated}',
+		'text-field': '{point_count}', // ref: https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/#geojson-cluster
+		// 'text-field': '{point_count_abbreviated}',
 		'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
 		'text-size': 12,
 	},

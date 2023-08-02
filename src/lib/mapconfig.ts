@@ -1,5 +1,4 @@
 import { AmbientLight, LightingEffect, PointLight } from '@deck.gl/core'
-import { zhenzhou } from '@/config'
 
 export const ambientLight = new AmbientLight({
 	color: [255, 255, 255],
@@ -29,18 +28,6 @@ export const material = {
 	diffuse: 0.6,
 	shininess: 32,
 	specularColor: [51, 51, 51],
-}
-
-export const INITIAL_VIEW_STATE = {
-	// 郑州经纬度
-	longitude: zhenzhou.lon,
-	latitude: zhenzhou.lat,
-	
-	zoom: 6.8,
-	minZoom: 5,
-	maxZoom: 15,
-	pitch: 40.5,
-	bearing: -27,
 }
 
 export const colorRange = [

@@ -2,15 +2,14 @@
 
 import React from 'react'
 
-import Map, { Layer } from 'react-map-gl'
+import Map from 'react-map-gl'
 import DeckGL from '@deck.gl/react'
 
-import { INITIAL_VIEW_STATE } from '@/lib/mapconfig'
-import { Columns, ColumnType, mapBox } from '@/config'
+import { Columns, ColumnType, INITIAL_VIEW_STATE, MapStyle } from '@/config'
 import { LanguageControl } from '@/components/deck.gl/controls/language.control'
 import { DrawControl } from '@/components/deck.gl/controls/draw.control'
-import data from '../../../data/table.json'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import data from '../../../../../data/table.json'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { useStoreBear } from '@/store'
 import { Slider } from '@/components/ui/slider'
@@ -20,7 +19,6 @@ import { HexagonLayer } from '@deck.gl/aggregation-layers'
 
 import { DataFilterExtension } from '@deck.gl/extensions'
 import { AmbientLight, LightingEffect, PointLight } from '@deck.gl/core'
-import { clusterCountLayer, clusterLayer } from '@/components/deck.gl/layers'
 
 export const colorRange = [
 	[1, 152, 189],
@@ -129,7 +127,7 @@ const LocationAggregatorMap = ({
 				<Map
 					mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
 					reuseMaps
-					mapStyle={mapBox.style}
+					mapStyle={MapStyle.general}
 					preventStyleDiffing={true}
 				>
 					
