@@ -1,15 +1,12 @@
 import coordinates from '../data/coordinates.json'
 import fs from 'fs'
-import { IViewState, Point } from '@/ds'
+import { IViewState, IFeature, IProperties } from '@/ds'
 
 
-const geoData: Point[] = coordinates.map((item, index) => ({
+const geoData: IFeature<IProperties>[] = coordinates.map((item, index) => ({
 	type: 'Feature',
 	properties: {
-		cluster: false,
-		cluster_id: index,
-		point_count: 1,
-		value: Math.floor(Math.random() * 100),
+		value: 500 + Math.floor(Math.random() * 100),
 	},
 	geometry: {
 		type: 'Point',

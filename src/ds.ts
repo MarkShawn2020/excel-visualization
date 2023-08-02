@@ -4,23 +4,41 @@ export interface IColumn {
 	range: number[]
 }
 
+
+// Define your view state type
+export interface IViewState
+	extends ViewState {
+	width: number | string;
+	height: number | string;
+}
+
+export interface IProperties {
+	value: number;
+}
+
+
 // Define your point data type
-export interface Point {
+export interface IFeature<P extends IProperties = {}> {
 	type: string;
-	properties: {
-		cluster: boolean;
-		cluster_id: number;
-		point_count?: number;
-		value: number;
-	};
+	properties: P
 	geometry: {
 		type: string;
 		coordinates: number[];
 	};
 }
 
-// Define your view state type
-export interface IViewState extends ViewState {
-	width: number | string;
-	height: number | string;
+export type ICluster<P extends IProperties> = IFeature<P> & {
+	id: number
+	properties: {
+		cluster: true
+		cluster_id: number
+		pointer_count: number
+		point_count_abbreviated: number | string
+		
+		mag1: number
+		mag2: number
+		mag3: number
+		mag4: number
+		mag5: number
+	}
 }

@@ -10,10 +10,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 0,
-        "point_count": 1,
-        "value": 39
+        "value": 501
       },
       "geometry": {
         "type": "Point",
@@ -26,10 +23,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 1,
-        "point_count": 1,
-        "value": 52
+        "value": 556
       },
       "geometry": {
         "type": "Point",
@@ -42,10 +36,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 2,
-        "point_count": 1,
-        "value": 15
+        "value": 511
       },
       "geometry": {
         "type": "Point",
@@ -58,10 +49,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 3,
-        "point_count": 1,
-        "value": 0
+        "value": 555
       },
       "geometry": {
         "type": "Point",
@@ -74,10 +62,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 4,
-        "point_count": 1,
-        "value": 50
+        "value": 541
       },
       "geometry": {
         "type": "Point",
@@ -90,10 +75,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 5,
-        "point_count": 1,
-        "value": 40
+        "value": 508
       },
       "geometry": {
         "type": "Point",
@@ -106,10 +88,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 6,
-        "point_count": 1,
-        "value": 98
+        "value": 517
       },
       "geometry": {
         "type": "Point",
@@ -122,10 +101,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 7,
-        "point_count": 1,
-        "value": 19
+        "value": 569
       },
       "geometry": {
         "type": "Point",
@@ -138,10 +114,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 8,
-        "point_count": 1,
-        "value": 0
+        "value": 567
       },
       "geometry": {
         "type": "Point",
@@ -154,10 +127,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 9,
-        "point_count": 1,
-        "value": 43
+        "value": 586
       },
       "geometry": {
         "type": "Point",
@@ -170,10 +140,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 10,
-        "point_count": 1,
-        "value": 33
+        "value": 567
       },
       "geometry": {
         "type": "Point",
@@ -186,10 +153,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 11,
-        "point_count": 1,
-        "value": 7
+        "value": 539
       },
       "geometry": {
         "type": "Point",
@@ -202,10 +166,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 12,
-        "point_count": 1,
-        "value": 15
+        "value": 529
       },
       "geometry": {
         "type": "Point",
@@ -218,10 +179,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 13,
-        "point_count": 1,
-        "value": 79
+        "value": 526
       },
       "geometry": {
         "type": "Point",
@@ -234,10 +192,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 14,
-        "point_count": 1,
-        "value": 46
+        "value": 547
       },
       "geometry": {
         "type": "Point",
@@ -250,10 +205,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 15,
-        "point_count": 1,
-        "value": 58
+        "value": 579
       },
       "geometry": {
         "type": "Point",
@@ -266,10 +218,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 16,
-        "point_count": 1,
-        "value": 2
+        "value": 509
       },
       "geometry": {
         "type": "Point",
@@ -282,10 +231,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 17,
-        "point_count": 1,
-        "value": 22
+        "value": 515
       },
       "geometry": {
         "type": "Point",
@@ -298,10 +244,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 18,
-        "point_count": 1,
-        "value": 45
+        "value": 506
       },
       "geometry": {
         "type": "Point",
@@ -314,10 +257,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 19,
-        "point_count": 1,
-        "value": 50
+        "value": 552
       },
       "geometry": {
         "type": "Point",
@@ -330,10 +270,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 20,
-        "point_count": 1,
-        "value": 81
+        "value": 530
       },
       "geometry": {
         "type": "Point",
@@ -346,10 +283,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 21,
-        "point_count": 1,
-        "value": 51
+        "value": 589
       },
       "geometry": {
         "type": "Point",
@@ -362,10 +296,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 22,
-        "point_count": 1,
-        "value": 45
+        "value": 559
       },
       "geometry": {
         "type": "Point",
@@ -378,10 +309,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 23,
-        "point_count": 1,
-        "value": 61
+        "value": 513
       },
       "geometry": {
         "type": "Point",
@@ -394,10 +322,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 24,
-        "point_count": 1,
-        "value": 65
+        "value": 567
       },
       "geometry": {
         "type": "Point",
@@ -410,10 +335,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 25,
-        "point_count": 1,
-        "value": 53
+        "value": 572
       },
       "geometry": {
         "type": "Point",
@@ -426,10 +348,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 26,
-        "point_count": 1,
-        "value": 6
+        "value": 528
       },
       "geometry": {
         "type": "Point",
@@ -442,10 +361,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 27,
-        "point_count": 1,
-        "value": 23
+        "value": 540
       },
       "geometry": {
         "type": "Point",
@@ -458,10 +374,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 28,
-        "point_count": 1,
-        "value": 77
+        "value": 574
       },
       "geometry": {
         "type": "Point",
@@ -474,10 +387,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 29,
-        "point_count": 1,
-        "value": 96
+        "value": 526
       },
       "geometry": {
         "type": "Point",
@@ -490,10 +400,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 30,
-        "point_count": 1,
-        "value": 29
+        "value": 533
       },
       "geometry": {
         "type": "Point",
@@ -506,10 +413,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 31,
-        "point_count": 1,
-        "value": 1
+        "value": 504
       },
       "geometry": {
         "type": "Point",
@@ -522,10 +426,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 32,
-        "point_count": 1,
-        "value": 74
+        "value": 502
       },
       "geometry": {
         "type": "Point",
@@ -538,10 +439,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 33,
-        "point_count": 1,
-        "value": 62
+        "value": 569
       },
       "geometry": {
         "type": "Point",
@@ -554,10 +452,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 34,
-        "point_count": 1,
-        "value": 46
+        "value": 550
       },
       "geometry": {
         "type": "Point",
@@ -570,10 +465,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 35,
-        "point_count": 1,
-        "value": 68
+        "value": 524
       },
       "geometry": {
         "type": "Point",
@@ -586,10 +478,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 36,
-        "point_count": 1,
-        "value": 35
+        "value": 529
       },
       "geometry": {
         "type": "Point",
@@ -602,10 +491,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 37,
-        "point_count": 1,
-        "value": 61
+        "value": 501
       },
       "geometry": {
         "type": "Point",
@@ -618,10 +504,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 38,
-        "point_count": 1,
-        "value": 57
+        "value": 570
       },
       "geometry": {
         "type": "Point",
@@ -634,10 +517,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 39,
-        "point_count": 1,
-        "value": 51
+        "value": 574
       },
       "geometry": {
         "type": "Point",
@@ -650,10 +530,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 40,
-        "point_count": 1,
-        "value": 86
+        "value": 599
       },
       "geometry": {
         "type": "Point",
@@ -666,10 +543,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 41,
-        "point_count": 1,
-        "value": 44
+        "value": 502
       },
       "geometry": {
         "type": "Point",
@@ -682,10 +556,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 42,
-        "point_count": 1,
-        "value": 27
+        "value": 598
       },
       "geometry": {
         "type": "Point",
@@ -698,10 +569,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 43,
-        "point_count": 1,
-        "value": 64
+        "value": 596
       },
       "geometry": {
         "type": "Point",
@@ -714,10 +582,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 44,
-        "point_count": 1,
-        "value": 5
+        "value": 522
       },
       "geometry": {
         "type": "Point",
@@ -730,10 +595,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 45,
-        "point_count": 1,
-        "value": 7
+        "value": 522
       },
       "geometry": {
         "type": "Point",
@@ -746,10 +608,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 46,
-        "point_count": 1,
-        "value": 48
+        "value": 579
       },
       "geometry": {
         "type": "Point",
@@ -762,10 +621,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 47,
-        "point_count": 1,
-        "value": 29
+        "value": 593
       },
       "geometry": {
         "type": "Point",
@@ -778,10 +634,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 48,
-        "point_count": 1,
-        "value": 23
+        "value": 511
       },
       "geometry": {
         "type": "Point",
@@ -794,10 +647,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 49,
-        "point_count": 1,
-        "value": 92
+        "value": 513
       },
       "geometry": {
         "type": "Point",
@@ -810,10 +660,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 50,
-        "point_count": 1,
-        "value": 19
+        "value": 582
       },
       "geometry": {
         "type": "Point",
@@ -826,10 +673,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 51,
-        "point_count": 1,
-        "value": 1
+        "value": 594
       },
       "geometry": {
         "type": "Point",
@@ -842,10 +686,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 52,
-        "point_count": 1,
-        "value": 80
+        "value": 548
       },
       "geometry": {
         "type": "Point",
@@ -858,10 +699,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 53,
-        "point_count": 1,
-        "value": 56
+        "value": 551
       },
       "geometry": {
         "type": "Point",
@@ -874,10 +712,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 54,
-        "point_count": 1,
-        "value": 50
+        "value": 536
       },
       "geometry": {
         "type": "Point",
@@ -890,10 +725,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 55,
-        "point_count": 1,
-        "value": 27
+        "value": 593
       },
       "geometry": {
         "type": "Point",
@@ -906,10 +738,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 56,
-        "point_count": 1,
-        "value": 40
+        "value": 557
       },
       "geometry": {
         "type": "Point",
@@ -922,10 +751,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 57,
-        "point_count": 1,
-        "value": 4
+        "value": 518
       },
       "geometry": {
         "type": "Point",
@@ -938,10 +764,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 58,
-        "point_count": 1,
-        "value": 37
+        "value": 563
       },
       "geometry": {
         "type": "Point",
@@ -954,10 +777,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 59,
-        "point_count": 1,
-        "value": 74
+        "value": 525
       },
       "geometry": {
         "type": "Point",
@@ -970,10 +790,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 60,
-        "point_count": 1,
-        "value": 94
+        "value": 582
       },
       "geometry": {
         "type": "Point",
@@ -986,10 +803,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 61,
-        "point_count": 1,
-        "value": 31
+        "value": 505
       },
       "geometry": {
         "type": "Point",
@@ -1002,10 +816,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 62,
-        "point_count": 1,
-        "value": 23
+        "value": 557
       },
       "geometry": {
         "type": "Point",
@@ -1018,10 +829,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 63,
-        "point_count": 1,
-        "value": 43
+        "value": 593
       },
       "geometry": {
         "type": "Point",
@@ -1034,10 +842,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 64,
-        "point_count": 1,
-        "value": 50
+        "value": 509
       },
       "geometry": {
         "type": "Point",
@@ -1050,10 +855,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 65,
-        "point_count": 1,
-        "value": 10
+        "value": 569
       },
       "geometry": {
         "type": "Point",
@@ -1066,10 +868,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 66,
-        "point_count": 1,
-        "value": 30
+        "value": 541
       },
       "geometry": {
         "type": "Point",
@@ -1082,10 +881,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 67,
-        "point_count": 1,
-        "value": 76
+        "value": 548
       },
       "geometry": {
         "type": "Point",
@@ -1098,10 +894,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 68,
-        "point_count": 1,
-        "value": 73
+        "value": 590
       },
       "geometry": {
         "type": "Point",
@@ -1114,10 +907,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 69,
-        "point_count": 1,
-        "value": 21
+        "value": 541
       },
       "geometry": {
         "type": "Point",
@@ -1130,10 +920,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 70,
-        "point_count": 1,
-        "value": 60
+        "value": 597
       },
       "geometry": {
         "type": "Point",
@@ -1146,10 +933,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 71,
-        "point_count": 1,
-        "value": 97
+        "value": 525
       },
       "geometry": {
         "type": "Point",
@@ -1162,10 +946,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 72,
-        "point_count": 1,
-        "value": 77
+        "value": 574
       },
       "geometry": {
         "type": "Point",
@@ -1178,10 +959,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 73,
-        "point_count": 1,
-        "value": 32
+        "value": 518
       },
       "geometry": {
         "type": "Point",
@@ -1194,10 +972,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 74,
-        "point_count": 1,
-        "value": 82
+        "value": 588
       },
       "geometry": {
         "type": "Point",
@@ -1210,10 +985,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 75,
-        "point_count": 1,
-        "value": 37
+        "value": 584
       },
       "geometry": {
         "type": "Point",
@@ -1226,10 +998,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 76,
-        "point_count": 1,
-        "value": 70
+        "value": 546
       },
       "geometry": {
         "type": "Point",
@@ -1242,10 +1011,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 77,
-        "point_count": 1,
-        "value": 77
+        "value": 584
       },
       "geometry": {
         "type": "Point",
@@ -1258,10 +1024,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 78,
-        "point_count": 1,
-        "value": 6
+        "value": 532
       },
       "geometry": {
         "type": "Point",
@@ -1274,10 +1037,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 79,
-        "point_count": 1,
-        "value": 93
+        "value": 542
       },
       "geometry": {
         "type": "Point",
@@ -1290,10 +1050,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 80,
-        "point_count": 1,
-        "value": 79
+        "value": 546
       },
       "geometry": {
         "type": "Point",
@@ -1306,10 +1063,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 81,
-        "point_count": 1,
-        "value": 73
+        "value": 591
       },
       "geometry": {
         "type": "Point",
@@ -1322,10 +1076,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 82,
-        "point_count": 1,
-        "value": 19
+        "value": 536
       },
       "geometry": {
         "type": "Point",
@@ -1338,10 +1089,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 83,
-        "point_count": 1,
-        "value": 45
+        "value": 542
       },
       "geometry": {
         "type": "Point",
@@ -1354,10 +1102,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 84,
-        "point_count": 1,
-        "value": 23
+        "value": 500
       },
       "geometry": {
         "type": "Point",
@@ -1370,10 +1115,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 85,
-        "point_count": 1,
-        "value": 74
+        "value": 501
       },
       "geometry": {
         "type": "Point",
@@ -1386,10 +1128,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 86,
-        "point_count": 1,
-        "value": 33
+        "value": 569
       },
       "geometry": {
         "type": "Point",
@@ -1402,10 +1141,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 87,
-        "point_count": 1,
-        "value": 6
+        "value": 541
       },
       "geometry": {
         "type": "Point",
@@ -1418,10 +1154,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 88,
-        "point_count": 1,
-        "value": 26
+        "value": 539
       },
       "geometry": {
         "type": "Point",
@@ -1434,10 +1167,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 89,
-        "point_count": 1,
-        "value": 62
+        "value": 531
       },
       "geometry": {
         "type": "Point",
@@ -1450,10 +1180,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 90,
-        "point_count": 1,
-        "value": 78
+        "value": 561
       },
       "geometry": {
         "type": "Point",
@@ -1466,10 +1193,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 91,
-        "point_count": 1,
-        "value": 10
+        "value": 521
       },
       "geometry": {
         "type": "Point",
@@ -1482,10 +1206,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 92,
-        "point_count": 1,
-        "value": 33
+        "value": 531
       },
       "geometry": {
         "type": "Point",
@@ -1498,10 +1219,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 93,
-        "point_count": 1,
-        "value": 77
+        "value": 548
       },
       "geometry": {
         "type": "Point",
@@ -1514,10 +1232,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 94,
-        "point_count": 1,
-        "value": 27
+        "value": 586
       },
       "geometry": {
         "type": "Point",
@@ -1530,10 +1245,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 95,
-        "point_count": 1,
-        "value": 50
+        "value": 586
       },
       "geometry": {
         "type": "Point",
@@ -1546,10 +1258,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 96,
-        "point_count": 1,
-        "value": 25
+        "value": 590
       },
       "geometry": {
         "type": "Point",
@@ -1562,10 +1271,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 97,
-        "point_count": 1,
-        "value": 31
+        "value": 567
       },
       "geometry": {
         "type": "Point",
@@ -1578,10 +1284,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 98,
-        "point_count": 1,
-        "value": 95
+        "value": 545
       },
       "geometry": {
         "type": "Point",
@@ -1594,10 +1297,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 99,
-        "point_count": 1,
-        "value": 42
+        "value": 579
       },
       "geometry": {
         "type": "Point",
@@ -1610,10 +1310,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 100,
-        "point_count": 1,
-        "value": 7
+        "value": 583
       },
       "geometry": {
         "type": "Point",
@@ -1626,10 +1323,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 101,
-        "point_count": 1,
-        "value": 95
+        "value": 512
       },
       "geometry": {
         "type": "Point",
@@ -1642,10 +1336,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 102,
-        "point_count": 1,
-        "value": 95
+        "value": 502
       },
       "geometry": {
         "type": "Point",
@@ -1658,10 +1349,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 103,
-        "point_count": 1,
-        "value": 19
+        "value": 599
       },
       "geometry": {
         "type": "Point",
@@ -1674,10 +1362,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 104,
-        "point_count": 1,
-        "value": 39
+        "value": 559
       },
       "geometry": {
         "type": "Point",
@@ -1690,10 +1375,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 105,
-        "point_count": 1,
-        "value": 70
+        "value": 554
       },
       "geometry": {
         "type": "Point",
@@ -1706,10 +1388,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 106,
-        "point_count": 1,
-        "value": 55
+        "value": 528
       },
       "geometry": {
         "type": "Point",
@@ -1722,10 +1401,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 107,
-        "point_count": 1,
-        "value": 56
+        "value": 582
       },
       "geometry": {
         "type": "Point",
@@ -1738,10 +1414,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 108,
-        "point_count": 1,
-        "value": 56
+        "value": 529
       },
       "geometry": {
         "type": "Point",
@@ -1754,10 +1427,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 109,
-        "point_count": 1,
-        "value": 95
+        "value": 527
       },
       "geometry": {
         "type": "Point",
@@ -1770,10 +1440,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 110,
-        "point_count": 1,
-        "value": 48
+        "value": 530
       },
       "geometry": {
         "type": "Point",
@@ -1786,10 +1453,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 111,
-        "point_count": 1,
-        "value": 88
+        "value": 580
       },
       "geometry": {
         "type": "Point",
@@ -1802,10 +1466,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 112,
-        "point_count": 1,
-        "value": 1
+        "value": 592
       },
       "geometry": {
         "type": "Point",
@@ -1818,10 +1479,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 113,
-        "point_count": 1,
-        "value": 22
+        "value": 558
       },
       "geometry": {
         "type": "Point",
@@ -1834,10 +1492,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 114,
-        "point_count": 1,
-        "value": 56
+        "value": 582
       },
       "geometry": {
         "type": "Point",
@@ -1850,10 +1505,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 115,
-        "point_count": 1,
-        "value": 0
+        "value": 598
       },
       "geometry": {
         "type": "Point",
@@ -1866,10 +1518,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 116,
-        "point_count": 1,
-        "value": 40
+        "value": 565
       },
       "geometry": {
         "type": "Point",
@@ -1882,10 +1531,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 117,
-        "point_count": 1,
-        "value": 51
+        "value": 538
       },
       "geometry": {
         "type": "Point",
@@ -1898,10 +1544,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 118,
-        "point_count": 1,
-        "value": 98
+        "value": 547
       },
       "geometry": {
         "type": "Point",
@@ -1914,10 +1557,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 119,
-        "point_count": 1,
-        "value": 9
+        "value": 514
       },
       "geometry": {
         "type": "Point",
@@ -1930,10 +1570,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 120,
-        "point_count": 1,
-        "value": 12
+        "value": 522
       },
       "geometry": {
         "type": "Point",
@@ -1946,10 +1583,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 121,
-        "point_count": 1,
-        "value": 29
+        "value": 510
       },
       "geometry": {
         "type": "Point",
@@ -1962,10 +1596,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 122,
-        "point_count": 1,
-        "value": 94
+        "value": 544
       },
       "geometry": {
         "type": "Point",
@@ -1978,10 +1609,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 123,
-        "point_count": 1,
-        "value": 59
+        "value": 574
       },
       "geometry": {
         "type": "Point",
@@ -1994,10 +1622,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 124,
-        "point_count": 1,
-        "value": 17
+        "value": 538
       },
       "geometry": {
         "type": "Point",
@@ -2010,10 +1635,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 125,
-        "point_count": 1,
-        "value": 32
+        "value": 552
       },
       "geometry": {
         "type": "Point",
@@ -2026,10 +1648,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 126,
-        "point_count": 1,
-        "value": 98
+        "value": 535
       },
       "geometry": {
         "type": "Point",
@@ -2042,10 +1661,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 127,
-        "point_count": 1,
-        "value": 49
+        "value": 533
       },
       "geometry": {
         "type": "Point",
@@ -2058,10 +1674,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 128,
-        "point_count": 1,
-        "value": 80
+        "value": 532
       },
       "geometry": {
         "type": "Point",
@@ -2074,10 +1687,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 129,
-        "point_count": 1,
-        "value": 87
+        "value": 512
       },
       "geometry": {
         "type": "Point",
@@ -2090,10 +1700,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 130,
-        "point_count": 1,
-        "value": 63
+        "value": 568
       },
       "geometry": {
         "type": "Point",
@@ -2106,10 +1713,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 131,
-        "point_count": 1,
-        "value": 20
+        "value": 508
       },
       "geometry": {
         "type": "Point",
@@ -2122,10 +1726,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 132,
-        "point_count": 1,
-        "value": 89
+        "value": 529
       },
       "geometry": {
         "type": "Point",
@@ -2138,10 +1739,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 133,
-        "point_count": 1,
-        "value": 43
+        "value": 516
       },
       "geometry": {
         "type": "Point",
@@ -2154,10 +1752,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 134,
-        "point_count": 1,
-        "value": 52
+        "value": 586
       },
       "geometry": {
         "type": "Point",
@@ -2170,10 +1765,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 135,
-        "point_count": 1,
-        "value": 72
+        "value": 593
       },
       "geometry": {
         "type": "Point",
@@ -2186,10 +1778,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 136,
-        "point_count": 1,
-        "value": 19
+        "value": 554
       },
       "geometry": {
         "type": "Point",
@@ -2202,10 +1791,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 137,
-        "point_count": 1,
-        "value": 53
+        "value": 551
       },
       "geometry": {
         "type": "Point",
@@ -2218,10 +1804,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 138,
-        "point_count": 1,
-        "value": 34
+        "value": 557
       },
       "geometry": {
         "type": "Point",
@@ -2234,10 +1817,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 139,
-        "point_count": 1,
-        "value": 95
+        "value": 599
       },
       "geometry": {
         "type": "Point",
@@ -2250,10 +1830,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 140,
-        "point_count": 1,
-        "value": 40
+        "value": 594
       },
       "geometry": {
         "type": "Point",
@@ -2266,10 +1843,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 141,
-        "point_count": 1,
-        "value": 60
+        "value": 581
       },
       "geometry": {
         "type": "Point",
@@ -2282,10 +1856,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 142,
-        "point_count": 1,
-        "value": 2
+        "value": 532
       },
       "geometry": {
         "type": "Point",
@@ -2298,10 +1869,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 143,
-        "point_count": 1,
-        "value": 41
+        "value": 541
       },
       "geometry": {
         "type": "Point",
@@ -2314,10 +1882,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 144,
-        "point_count": 1,
-        "value": 60
+        "value": 539
       },
       "geometry": {
         "type": "Point",
@@ -2330,10 +1895,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 145,
-        "point_count": 1,
-        "value": 49
+        "value": 563
       },
       "geometry": {
         "type": "Point",
@@ -2346,10 +1908,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 146,
-        "point_count": 1,
-        "value": 10
+        "value": 579
       },
       "geometry": {
         "type": "Point",
@@ -2362,10 +1921,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 147,
-        "point_count": 1,
-        "value": 69
+        "value": 509
       },
       "geometry": {
         "type": "Point",
@@ -2378,10 +1934,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 148,
-        "point_count": 1,
-        "value": 7
+        "value": 551
       },
       "geometry": {
         "type": "Point",
@@ -2394,10 +1947,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 149,
-        "point_count": 1,
-        "value": 36
+        "value": 593
       },
       "geometry": {
         "type": "Point",
@@ -2410,10 +1960,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 150,
-        "point_count": 1,
-        "value": 26
+        "value": 548
       },
       "geometry": {
         "type": "Point",
@@ -2426,10 +1973,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 151,
-        "point_count": 1,
-        "value": 82
+        "value": 592
       },
       "geometry": {
         "type": "Point",
@@ -2442,10 +1986,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 152,
-        "point_count": 1,
-        "value": 39
+        "value": 579
       },
       "geometry": {
         "type": "Point",
@@ -2458,10 +1999,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 153,
-        "point_count": 1,
-        "value": 49
+        "value": 528
       },
       "geometry": {
         "type": "Point",
@@ -2474,10 +2012,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 154,
-        "point_count": 1,
-        "value": 85
+        "value": 502
       },
       "geometry": {
         "type": "Point",
@@ -2490,10 +2025,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 155,
-        "point_count": 1,
-        "value": 21
+        "value": 512
       },
       "geometry": {
         "type": "Point",
@@ -2506,10 +2038,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 156,
-        "point_count": 1,
-        "value": 27
+        "value": 505
       },
       "geometry": {
         "type": "Point",
@@ -2522,10 +2051,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 157,
-        "point_count": 1,
-        "value": 56
+        "value": 527
       },
       "geometry": {
         "type": "Point",
@@ -2538,10 +2064,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 158,
-        "point_count": 1,
-        "value": 81
+        "value": 552
       },
       "geometry": {
         "type": "Point",
@@ -2554,10 +2077,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 159,
-        "point_count": 1,
-        "value": 38
+        "value": 592
       },
       "geometry": {
         "type": "Point",
@@ -2570,10 +2090,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 160,
-        "point_count": 1,
-        "value": 15
+        "value": 504
       },
       "geometry": {
         "type": "Point",
@@ -2586,10 +2103,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 161,
-        "point_count": 1,
-        "value": 69
+        "value": 563
       },
       "geometry": {
         "type": "Point",
@@ -2602,10 +2116,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 162,
-        "point_count": 1,
-        "value": 88
+        "value": 523
       },
       "geometry": {
         "type": "Point",
@@ -2618,10 +2129,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 163,
-        "point_count": 1,
-        "value": 56
+        "value": 570
       },
       "geometry": {
         "type": "Point",
@@ -2634,10 +2142,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 164,
-        "point_count": 1,
-        "value": 84
+        "value": 564
       },
       "geometry": {
         "type": "Point",
@@ -2650,10 +2155,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 165,
-        "point_count": 1,
-        "value": 91
+        "value": 515
       },
       "geometry": {
         "type": "Point",
@@ -2666,10 +2168,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 166,
-        "point_count": 1,
-        "value": 2
+        "value": 568
       },
       "geometry": {
         "type": "Point",
@@ -2682,10 +2181,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 167,
-        "point_count": 1,
-        "value": 78
+        "value": 500
       },
       "geometry": {
         "type": "Point",
@@ -2698,10 +2194,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 168,
-        "point_count": 1,
-        "value": 96
+        "value": 511
       },
       "geometry": {
         "type": "Point",
@@ -2714,10 +2207,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 169,
-        "point_count": 1,
-        "value": 94
+        "value": 598
       },
       "geometry": {
         "type": "Point",
@@ -2730,10 +2220,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 170,
-        "point_count": 1,
-        "value": 11
+        "value": 598
       },
       "geometry": {
         "type": "Point",
@@ -2746,10 +2233,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 171,
-        "point_count": 1,
-        "value": 24
+        "value": 558
       },
       "geometry": {
         "type": "Point",
@@ -2762,10 +2246,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 172,
-        "point_count": 1,
-        "value": 30
+        "value": 590
       },
       "geometry": {
         "type": "Point",
@@ -2778,10 +2259,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 173,
-        "point_count": 1,
-        "value": 12
+        "value": 515
       },
       "geometry": {
         "type": "Point",
@@ -2794,10 +2272,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 174,
-        "point_count": 1,
-        "value": 99
+        "value": 579
       },
       "geometry": {
         "type": "Point",
@@ -2810,10 +2285,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 175,
-        "point_count": 1,
-        "value": 14
+        "value": 501
       },
       "geometry": {
         "type": "Point",
@@ -2826,10 +2298,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 176,
-        "point_count": 1,
-        "value": 55
+        "value": 533
       },
       "geometry": {
         "type": "Point",
@@ -2842,10 +2311,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 177,
-        "point_count": 1,
-        "value": 0
+        "value": 578
       },
       "geometry": {
         "type": "Point",
@@ -2858,10 +2324,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 178,
-        "point_count": 1,
-        "value": 50
+        "value": 570
       },
       "geometry": {
         "type": "Point",
@@ -2874,10 +2337,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 179,
-        "point_count": 1,
-        "value": 55
+        "value": 571
       },
       "geometry": {
         "type": "Point",
@@ -2890,10 +2350,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 180,
-        "point_count": 1,
-        "value": 36
+        "value": 502
       },
       "geometry": {
         "type": "Point",
@@ -2906,10 +2363,7 @@
     {
       "type": "Feature",
       "properties": {
-        "cluster": false,
-        "cluster_id": 181,
-        "point_count": 1,
-        "value": 42
+        "value": 570
       },
       "geometry": {
         "type": "Point",

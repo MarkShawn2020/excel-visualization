@@ -9,7 +9,7 @@ import { clusterCountLayer, clusterLayer, unclusteredPointLayer } from './layers
 import type { GeoJSONSource } from 'mapbox-gl'
 import Supercluster from 'supercluster'
 import { INITIAL_VIEW_STATE } from '@/config'
-import { IViewState, Point } from '@/ds'
+import { IViewState, IFeature } from '@/ds'
 
 import points from '../../../../../data/features.geo.json'
 import DeckGL from '@deck.gl/react'
@@ -41,14 +41,14 @@ export default function Index1() {
 			})
 		})
 	}
-	const [supercluster, setSupercluster] = useState<Supercluster<Point> | null>(null)
+	const [supercluster, setSupercluster] = useState<Supercluster<IFeature> | null>(null)
 	const [viewState, setViewState] = useState<IViewState>(INITIAL_VIEW_STATE)
-	const [clusters, setClusters] = useState<Point[]>([])
+	const [clusters, setClusters] = useState<IFeature[]>([])
 	
 	// Load and process data
 	useEffect(() => {
 		// Assuming "points" is your data
-		const index = new Supercluster<Point>({
+		const index = new Supercluster<IFeature>({
 			radius: 40,
 			maxZoom: 16,
 		})
@@ -78,7 +78,7 @@ export default function Index1() {
 		}
 	}, [viewState, supercluster])
 	
-	const getClusterSum = (cluster: Point) => {
+	const getClusterSum = (cluster: IFeature) => {
 		// Get all original points in this cluster
 		const leaves = supercluster?.getLeaves(cluster.properties.cluster_id, Infinity)
 		// Sum their "value" property
