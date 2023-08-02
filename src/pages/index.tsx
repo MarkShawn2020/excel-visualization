@@ -1,5 +1,5 @@
 import { Header } from '@/components/header'
-import Index from '@/components/react-map-gl/index2'
+import Index from '@/components/react-map-gl/v2-supercluster'
 
 
 export default function Home() {

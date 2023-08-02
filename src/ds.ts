@@ -8,8 +8,8 @@ export interface IColumn {
 // Define your view state type
 export interface IViewState
 	extends ViewState {
-	width: number | string;
-	height: number | string;
+	width: number;
+	height: number;
 }
 
 export interface IProperties {
@@ -35,10 +35,12 @@ export type ICluster<P extends IProperties> = IFeature<P> & {
 		pointer_count: number
 		point_count_abbreviated: number | string
 		
-		mag1: number
-		mag2: number
-		mag3: number
-		mag4: number
-		mag5: number
+		case1: number
+		case2: number
+		case3: number
+		case4: number
+		case5: number
+		cnt: number
+		sum: number
 	}
 }

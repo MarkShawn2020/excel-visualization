@@ -1,0 +1,100 @@
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import ReactMapGL, { Layer, MapRef, Marker, NavigationControl, Source, ViewState } from 'react-map-gl'
+import { circleLayerProps, INITIAL_VIEW_STATE, MAP_PROJECTION, MapStyle, sourceProps, textLayerProps } from '@/config'
+import { IProperties, IViewState } from '@/ds'
+// import Supercluster from 'supercluster'
+import { BBox, Feature, Point } from 'geojson'
+// import useSupercluster from '@/hooks/use-supercluster'
+import { LanguageControl } from '@/components/deck.gl/controls/language.control'
+import Supercluster from 'supercluster'
+import data from '@/../data/full.geo.json'
+import useSupercluster from '@/hooks/use-supercluster'
+import { FlyToInterpolator } from '@deck.gl/core'
+import { DynamicMarker } from '@/components/react-map-gl/marker'
+import _ from 'lodash' // mark的话 必须加
+
+
+const Map: React.FC = () => {
+	const ref = useRef<MapRef | null>(null)
+	const [bounds, setBounds] = useState<BBox | undefined>(undefined)
+	const [viewport, setViewport] = useState<IViewState>(INITIAL_VIEW_STATE)
+	
+	const [features, setFeatures] = useState<Supercluster.PointFeature<IProperties>[]>(data.features)
+	const [selected, setSelected] = useState<Feature<Point> | null>(null)
+	
+	const { clusters, supercluster } = useSupercluster<IProperties>({
+		points: features,
+		bounds,
+		zoom: INITIAL_VIEW_STATE.zoom,
+		options: {
+			radius: 75,
+			maxZoom: 20,
+			map: (p) => ({ ...p, sum: p.value, cnt: 1 }),
+			reduce: (accumulated, props) => {
+				accumulated.sum += props.sum
+				accumulated.cnt += props.cnt
+			},
+		},
+	})
+	
+	const refMap = useRef<MapRef | null>(null)
+	
+	const TOTAL = _.sum(clusters.map((cluster) => cluster.properties.sum))
+	// console.log('[SuperCluster] ', clusters, ` sum=${TOTAL}`)
+	
+	return (
+		// {...viewport}
+		<ReactMapGL
+			ref={refMap}
+			initialViewState={INITIAL_VIEW_STATE}
+			projection={MAP_PROJECTION}
+			mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
+			// interactiveLayerIds={[`clusters-category`]}
+			mapStyle={MapStyle.light}
+			onRender={() => {
+				const newBounds = refMap.current?.getBounds().toArray().flat()
+				console.log({ bounds, newBounds })
+				if (!_.isEqual(newBounds, bounds)) {
+					setBounds(newBounds)
+				}
+			}}
+		>
+			
+			<Source {...sourceProps}>
+				
+				<Layer {...circleLayerProps}/>
+				
+				<Layer {...textLayerProps}/>
+			
+			</Source>
+			
+			{clusters
+				.filter((cluster) => cluster.properties.cluster)
+				.map((cluster) => {
+					return (
+						<DynamicMarker cluster={cluster} key={cluster.id} TOTAL={TOTAL}/>
+					)
+				})}
+			
+			{/*{selected && (*/}
+			{/*	<Popup*/}
+			{/*		latitude={selected.geometry.coordinates[1]}*/}
+			{/*		longitude={selected.geometry.coordinates[0]}*/}
+			{/*		closeButton={true}*/}
+			{/*		closeOnClick={false}*/}
+			{/*		onClose={() => setSelected(null)}*/}
+			{/*	>*/}
+			{/*		<div>*/}
+			{/*			<h2>{selected.properties.title}</h2>*/}
+			{/*			<p>{selected.properties.description}</p>*/}
+			{/*		</div>*/}
+			{/*	</Popup>*/}
+			{/*)}*/}
+			
+			<LanguageControl/>
+			<NavigationControl/>
+		</ReactMapGL>
+	)
+}
+
+export default Map

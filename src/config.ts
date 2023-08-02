@@ -29,8 +29,8 @@ export const INITIAL_VIEW_STATE: IViewState = {
 	bearing: 0,
 	pitch: 15,
 	
-	width: '100%',
-	height: '100%',
+	width: 0,
+	height: 0,
 	
 	padding: { top: 0, left: 0, right: 0, bottom: 0 },
 	
@@ -45,13 +45,13 @@ export enum MapStyle {
 
 export const sourceId = 'shit'
 
-// filters for classifying sourceIds into five categories based on magnitude
+// filters for classifying sourceIds into five categories based on casenitude
 const segs = [520, 540, 560, 580, 600]
-export const mag1 = ['<', ['get', 'value'], segs[0]]
-export const mag2 = ['all', ['>=', ['get', 'value'], segs[0]], ['<', ['get', 'value'], segs[1]]]
-export const mag3 = ['all', ['>=', ['get', 'value'], segs[1]], ['<', ['get', 'value'], segs[2]]]
-export const mag4 = ['all', ['>=', ['get', 'value'], segs[2]], ['<', ['get', 'value'], segs[3]]]
-export const mag5 = ['>=', ['get', 'value'], segs[3]]
+export const case1 = ['<', ['get', 'value'], segs[0]]
+export const case2 = ['all', ['>=', ['get', 'value'], segs[0]], ['<', ['get', 'value'], segs[1]]]
+export const case3 = ['all', ['>=', ['get', 'value'], segs[1]], ['<', ['get', 'value'], segs[2]]]
+export const case4 = ['all', ['>=', ['get', 'value'], segs[2]], ['<', ['get', 'value'], segs[3]]]
+export const case5 = ['>=', ['get', 'value'], segs[3]]
 // colors to use for the categories
 export const colors = ['#0ef906', '#3e122c', '#fd8d3c', '#fc4e2a', '#e31a1c']
 export const circleLayerProps: CircleLayer = {
@@ -62,13 +62,13 @@ export const circleLayerProps: CircleLayer = {
 	'paint': {
 		'circle-color': [
 			'case',
-			mag1,
+			case1,
 			colors[0],
-			mag2,
+			case2,
 			colors[1],
-			mag3,
+			case3,
 			colors[2],
-			mag4,
+			case4,
 			colors[3],
 			colors[4],
 		],
@@ -106,12 +106,14 @@ export const sourceProps: SourceProps = {
 	'cluster': true,
 	'clusterRadius': 80,
 	'clusterProperties': {
-		// keep separate counts for each magnitude category in a cluster
-		'mag1': ['+', ['case', mag1, 1, 0]],
-		'mag2': ['+', ['case', mag2, 1, 0]],
-		'mag3': ['+', ['case', mag3, 1, 0]],
-		'mag4': ['+', ['case', mag4, 1, 0]],
-		'mag5': ['+', ['case', mag5, 1, 0]],
+		'cnt': ['+', 1],
+		'sum': ['+', ['get', 'value']],
+		// keep separate counts for each casenitude category in a cluster
+		'case1': ['+', ['case', case1, ['get', 'value'], 0]],
+		'case2': ['+', ['case', case2, ['get', 'value'], 0]],
+		'case3': ['+', ['case', case3, ['get', 'value'], 0]],
+		'case4': ['+', ['case', case4, ['get', 'value'], 0]],
+		'case5': ['+', ['case', case5, ['get', 'value'], 0]],
 	},
 }
 export const MAP_PROJECTION = 'albers' // 最适合查看小区域

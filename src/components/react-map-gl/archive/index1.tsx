@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ReactMapGL, { Layer, Source } from 'react-map-gl'
 import Supercluster from 'supercluster'
-import points from '../../../data/features.geo.json'
+import points from '../../../../data/features.geo.json'
 import { INITIAL_VIEW_STATE } from '@/config'
 import { IViewState } from '@/ds'
 
