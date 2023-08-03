@@ -15,8 +15,11 @@ import _ from 'lodash'
 import { usePrevious } from '@radix-ui/react-use-previous'
 import { useMarkersBear } from '@/store' // mark的话 必须加
 
+import 'mapbox-gl/dist/mapbox-gl.css'
+
 const mapFunction = (p) => ({ ...p, sum: p.value, cnt: 1 })
 const reduceFunction = (accumulated, props) => {
+	accumulated.value += props.value
 	accumulated.sum += props.sum
 	accumulated.cnt += props.cnt
 }
@@ -43,7 +46,9 @@ const Map: React.FC = () => {
 			log: false,
 		},
 	})
-	const clusters = clusters_.filter((cluster) => cluster.properties.cluster)
+	const clusters = clusters_
+		.filter((v) => v)
+	// .filter((cluster) => cluster.properties.cluster)
 	// const clusters = [].filter((cluster) => cluster.properties.cluster)
 	
 	const previousCluster = usePrevious(clusters)
@@ -54,7 +59,7 @@ const Map: React.FC = () => {
 	
 	const refMap = useRef<MapRef | null>(null)
 	
-	const TOTAL = _.sum(clusters.map((cluster) => cluster.properties.sum))
+	const TOTAL = _.sum(clusters.map((cluster) => cluster.properties.value))
 	console.log('[SuperCluster] ', clusters)
 	
 	return (
@@ -81,18 +86,19 @@ const Map: React.FC = () => {
 			
 			<Source {...sourceProps}>
 				
-				<Layer {...circleLayerProps}/>
+				{/*<Layer {...circleLayerProps}/>*/}
 				
-				<Layer {...textLayerProps}/>
+				{/*<Layer {...textLayerProps}/>*/}
+				
+				
+				{clusters
+					.map((cluster) => {
+						return (
+							<DynamicMarker cluster={cluster} key={cluster.id} TOTAL={TOTAL}/>
+						)
+					})}
 			
 			</Source>
-			
-			{clusters
-				.map((cluster) => {
-					return (
-						<DynamicMarker cluster={cluster} key={cluster.id} TOTAL={TOTAL}/>
-					)
-				})}
 			
 			{/*{selected && (*/}
 			{/*	<Popup*/}

@@ -20,11 +20,13 @@ export const DynamicMarker = ({ cluster, TOTAL }: {
 	
 	const { geometry, properties } = cluster
 	const [lon, lat] = geometry.coordinates
-	const { sum, cnt } = properties
+	const value = properties.cluster ? properties.sum : properties.value
+	const display = properties.cluster ? `${properties.sum}(${properties.cnt})` : properties.value
 	
-	const r = 20 + Math.sqrt(sum / TOTAL) * 100
-	const r0 = Math.round(r * 0.6)
+	const r = 100 + Math.sqrt(value / TOTAL) * 200
 	const w = r * 2
+	
+	console.log({ properties, display, value, TOTAL, r })
 	
 	return (
 		<Marker ref={ref} key={cluster.id} longitude={lon} latitude={lat}>
@@ -40,11 +42,10 @@ export const DynamicMarker = ({ cluster, TOTAL }: {
 				{/*		/>,*/}
 				{/*	)*/}
 				{/*}*/}
-				<circle cx={r} cy={r} r={r0 / 4} fill="#ef4444"/>
-				<circle cx={r} cy={r} r={r0 / 4} fill="#ef444455" className={clsx('animate-ping origin-center duration-[3000ms]')}/>
+				<circle cx={r} cy={r} r={r / 8} fill="#ef4444"/>
+				<circle cx={r} cy={r} r={r / 8} fill="#ef444455" className={clsx('animate-ping origin-center duration-[3000ms]')}/>
 				<text dominantBaseline="central" transform={`translate(${r}, ${r})`}>
-					{`${sum}(${cnt})`}
-					{/*{cluster.id}*/}
+					{display}
 				</text>
 			</svg>
 		</Marker>
