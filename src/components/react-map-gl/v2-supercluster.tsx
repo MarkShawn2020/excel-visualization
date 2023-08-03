@@ -13,23 +13,30 @@ import { FlyToInterpolator } from '@deck.gl/core'
 import { DynamicMarker } from '@/components/react-map-gl/marker'
 import _ from 'lodash'
 import { usePrevious } from '@radix-ui/react-use-previous'
-import { useMarkersBear, useVisualizationBear } from '@/store' // mark的话 必须加
+import { useDisplayColumnBear, useMarkersBear, useVisualizationBear } from '@/store' // mark的话 必须加
 
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-const mapFunction = (p) => ({ ...p, sum: p.value, cnt: 1 })
-const reduceFunction = (accumulated, props) => {
-	accumulated.value += props.value
-	accumulated.sum += props.sum
-	accumulated.cnt += props.cnt
-}
 
 const Map: React.FC = () => {
+	const { current } = useDisplayColumnBear()
 	const { features } = useVisualizationBear()
 	const { delMarker } = useMarkersBear()
 	
 	const [bounds, setBounds] = useState<BBox | undefined>(undefined)
 	const [zoom, setZoom] = useState<number>(INITIAL_VIEW_STATE.zoom)
+	
+	const mapFunction = useCallback((p) => ({
+			...p,
+			sum: p[current],
+			cnt: 1,
+		}),
+		[current])
+	
+	const reduceFunction = useCallback((accumulated, props) => {
+		accumulated.sum += props.sum
+		accumulated.cnt += props.cnt
+	}, [])
 	
 	const [selected, setSelected] = useState<Feature<Point> | null>(null)
 	
@@ -45,10 +52,7 @@ const Map: React.FC = () => {
 			log: false,
 		},
 	})
-	const clusters = clusters_
-		.filter((v) => v)
-	// .filter((cluster) => cluster.properties.cluster)
-	// const clusters = [].filter((cluster) => cluster.properties.cluster)
+	const clusters = clusters_.filter((cluster) => typeof cluster.properties.sum === 'number')
 	
 	const previousCluster = usePrevious(clusters)
 	previousCluster.forEach((c) => {
@@ -58,7 +62,7 @@ const Map: React.FC = () => {
 	
 	const refMap = useRef<MapRef | null>(null)
 	
-	const TOTAL = _.sum(clusters.map((cluster) => cluster.properties.value))
+	const TOTAL = _.sum(clusters.map((cluster) => cluster.properties.sum))
 	
 	console.log({ features, clusters })
 	

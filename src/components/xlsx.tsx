@@ -26,7 +26,7 @@ export const ReadXlsx = () => {
 		setMap(map)
 		
 		const lnglatColIndex = colNames.findIndex((v) => v === LngLatColName)
-		console.log({ cols, rows, map, lnglatColIndex })
+		console.debug({ cols, rows, map, lnglatColIndex })
 		if (lnglatColIndex < 0) return
 		
 		const features = rows
@@ -40,7 +40,7 @@ export const ReadXlsx = () => {
 			}))
 			.filter((feature) => feature.geometry.coordinates)
 		setFeatures(features)
-		console.log({ features })
+		console.debug({ features })
 		
 	}, [ws, skipRows])
 	
