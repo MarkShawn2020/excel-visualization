@@ -41,7 +41,7 @@ export const ControlPanel = () => {
 				<div className={'text-2xl'}>数据操作</div>
 				
 				<div className={'flex items-center gap-2'}>
-					<Label>有效坐标个数： {features.length}</Label>
+					<Label>有效坐标个数： {features.length} / {rows.length}</Label>
 					<Select value={lnglatCol} onValueChange={setLnglatCol}>
 						<SelectTrigger>
 							<SelectValue placeholder={selectColTitle}/>

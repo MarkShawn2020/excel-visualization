@@ -105,7 +105,7 @@ const Map: React.FC = () => {
 		>
 			
 			
-			{clusters.map((cluster) => <DynamicMarker cluster={cluster} key={cluster.id} total={total}/>)}
+			{clusters.map((cluster) => <DynamicMarker cluster={cluster} key={cluster.id} total={total} zoom={zoom}/>)}
 			
 			<LanguageControl/>
 			<NavigationControl/>

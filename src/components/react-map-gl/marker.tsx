@@ -4,12 +4,13 @@ import { ICluster, IProperties } from '@/ds'
 import { Marker, Popup, useMap } from 'react-map-gl'
 
 import { clsx } from 'clsx'
-import { useMarkersBear } from '@/store'
+import { useInputSheetBear, useMarkersBear } from '@/store'
 import { useHover } from '@mantine/hooks' // mark的话 必须加
 
 
-export const DynamicMarker = ({ cluster, total }: {
+export const DynamicMarker = ({ cluster, total, zoom }: {
 	cluster: ICluster<IProperties>
+	zoom: number
 	total: {
 		sum: any
 		cnt: number
@@ -40,7 +41,14 @@ export const DynamicMarker = ({ cluster, total }: {
 		<>
 			<Marker ref={ref} key={cluster.id} longitude={lon} latitude={lat} onClick={() => {
 				console.log('clicked')
-				map.current?.flyTo({ center: cluster.geometry.coordinates, essential: true })
+				map.current?.easeTo({
+					center: cluster.geometry.coordinates,
+					essential: true,
+					// pitch: 0,
+					// bearing: 0,
+					zoom: zoom + 1,
+					duration: 1000,
+				})
 			}}>
 				<svg width={w} height={w} viewBox={`0 0 ${w} ${w}`} textAnchor="middle" ref={refHover}
 					// className={'bg-cyan-800'}
