@@ -20,9 +20,9 @@ export const DynamicMarker = ({ cluster, TOTAL }: {
 	
 	const { geometry, properties } = cluster
 	const [lon, lat] = geometry.coordinates
-	const display = `${properties.sum.toFixed(1)}(${properties.cnt})`
+	const display = `${properties.sum.toFixed(1)}\n(${properties.cnt})`
 	
-	const r = 100 + Math.sqrt(properties.sum / TOTAL) * 200
+	const r = 150 + Math.sqrt(properties.sum / TOTAL) * 200
 	const w = r * 2
 	
 	console.log({ cluster, display, TOTAL, r })
@@ -42,9 +42,11 @@ export const DynamicMarker = ({ cluster, TOTAL }: {
 				{/*	)*/}
 				{/*}*/}
 				<circle cx={r} cy={r} r={r / 8} fill="#ef4444"/>
-				<circle cx={r} cy={r} r={r / 8} fill="#ef444455" className={clsx('animate-ping origin-center duration-[3000ms]')}/>
-				<text dominantBaseline="central" transform={`translate(${r}, ${r})`}>
-					{display}
+				<circle cx={r} cy={r} r={r / 8} fill="#ef444455" className={clsx('animate-ping origin-center anim-duration-[3000ms]')}/>
+				<text dominantBaseline="central" transform={`translate(${r}, ${r})`} fill={'white'} fontSize={14}>
+					{display.split('\n').map((line, index) => (
+						<tspan key={index} x={0} y={`${.9 * (index)}em`}>{line}</tspan>
+					))}
 				</text>
 			</svg>
 		</Marker>

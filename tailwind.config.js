@@ -1,3 +1,9 @@
+function filterDefault(values) {
+	return Object.fromEntries(
+		Object.entries(values).filter(([key]) => key !== "DEFAULT"),
+	)
+}
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	darkMode: ["class"],
@@ -69,5 +75,21 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		
+		require('tailwindcss/plugin')(function ({addVariant, matchVariant, theme, matchUtilities}) {
+			addVariant('not-first', '&:not(first-child)') // ref: https://www.reddit.com/r/tailwindcss/comments/s3wka1/comment/hspmjxo/?utm_source=share&utm_medium=web2x&context=3
+			addVariant('not-last', '&:not(last-child)')
+			
+			addVariant("hocus", ["&:hover", "&:focus"])
+			
+			// 防止与animation的duration冲突， ref: https://github.com/jamiebuilds/tailwindcss-animate/blob/main/index.js
+			matchUtilities(
+				{"anim-duration": (value) => ({animationDuration: value})},
+				{values: filterDefault(theme("animationDuration"))},
+			)
+			
+		})
+	],
 }
