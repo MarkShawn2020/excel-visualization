@@ -4,16 +4,30 @@ import { produce } from 'immer'
 import { Columns, ColumnType } from '@/config'
 import { RefObject } from 'react'
 import mapboxgl from 'mapbox-gl'
+import { WorkSheet } from 'xlsx'
 
-export const useStoreBear = create(combine({
-	col: ColumnType.v1,
+export const useInputSheetBear = create(combine({
+	ws: null,
+	name: '',
+	skipRows: 0,
+	cols: [],
+	rows: [],
+}, (set) => ({
+	setWs: (v: WorkSheet) => set(produce((state) => {state.ws = v})),
+	setName: (v: string) => set(produce((state) => {state.name = v})),
+	setSkipRows: (v: number) => set(produce((state) => {state.skipRows = v})),
+	setCols: (v: any[]) => set(produce((state) => {state.cols = v})),
+	setRows: (v: any[]) => set(produce((state) => {state.rows = v})),
+})))
+
+export const useDisplayColumnBear = create(combine({
+	current: null,
 	range: {
 		value: Columns[ColumnType.v1].range,
 		scope: Columns[ColumnType.v1].range,
 	},
-	
 }, (set) => ({
-	setColumn: (v: ColumnType) => set(produce((state) => {state.col = v})),
+	setCurrent: (v: ColumnType) => set(produce((state) => {state.current = v})),
 	setRangeScope: (v: number[]) => set(produce((state) => {state.range.scope = v})),
 	setRangeValue: (v: number[]) => set(produce((state) => {state.range.value = v})),
 })))

@@ -11,7 +11,7 @@ import { DrawControl } from '@/components/deck.gl/controls/draw.control'
 import data from '../../../../../data/table.json'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { useStoreBear } from '@/store'
+import { useDisplayColumnBear } from '@/store'
 import { Slider } from '@/components/ui/slider'
 
 import { ScatterplotLayer } from '@deck.gl/layers'
@@ -61,7 +61,7 @@ const LocationAggregatorMap = ({
 	                               upperPercentile = 100,
 	                               coverage = 1,
                                }) => {
-	const { col, range, setColumn, setRangeValue, setRangeScope } = useStoreBear()
+	const { col, range, setColumn, setRangeValue, setRangeScope } = useDisplayColumnBear()
 	
 	const dataFilter = new DataFilterExtension({ filterSize: 1, fp64: false })
 	
