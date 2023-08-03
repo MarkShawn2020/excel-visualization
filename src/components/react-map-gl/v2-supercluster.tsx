@@ -11,8 +11,15 @@ import data from '@/../data/full.geo.json'
 import useSupercluster from '@/hooks/use-supercluster'
 import { FlyToInterpolator } from '@deck.gl/core'
 import { DynamicMarker } from '@/components/react-map-gl/marker'
-import _ from 'lodash' // mark的话 必须加
+import _ from 'lodash'
+import { usePrevious } from '@radix-ui/react-use-previous'
+import { useMarkersBear } from '@/store' // mark的话 必须加
 
+const mapFunction = (p) => ({ ...p, sum: p.value, cnt: 1 })
+const reduceFunction = (accumulated, props) => {
+	accumulated.sum += props.sum
+	accumulated.cnt += props.cnt
+}
 
 const Map: React.FC = () => {
 	const ref = useRef<MapRef | null>(null)
@@ -21,26 +28,32 @@ const Map: React.FC = () => {
 	
 	const [features, setFeatures] = useState<Supercluster.PointFeature<IProperties>[]>(data.features)
 	const [selected, setSelected] = useState<Feature<Point> | null>(null)
+	const { delMarker } = useMarkersBear()
 	
-	const { clusters, supercluster } = useSupercluster<IProperties>({
+	const { clusters: clusters_ = [], supercluster } = useSupercluster<IProperties>({
 		points: features,
 		bounds,
 		zoom: INITIAL_VIEW_STATE.zoom,
 		options: {
 			radius: 75,
 			maxZoom: 20,
-			map: (p) => ({ ...p, sum: p.value, cnt: 1 }),
-			reduce: (accumulated, props) => {
-				accumulated.sum += props.sum
-				accumulated.cnt += props.cnt
-			},
+			map: mapFunction,
+			reduce: reduceFunction,
 		},
+	})
+	const clusters = clusters_.filter((cluster) => cluster.properties.cluster)
+	// const clusters = [].filter((cluster) => cluster.properties.cluster)
+	
+	const previousCluster = usePrevious(clusters)
+	previousCluster.forEach((c) => {
+		if (!clusters.find((cc) => cc.id === c.id))
+			delMarker(c.id)
 	})
 	
 	const refMap = useRef<MapRef | null>(null)
 	
 	const TOTAL = _.sum(clusters.map((cluster) => cluster.properties.sum))
-	// console.log('[SuperCluster] ', clusters, ` sum=${TOTAL}`)
+	console.log('[SuperCluster] ', clusters)
 	
 	return (
 		// {...viewport}
@@ -53,7 +66,7 @@ const Map: React.FC = () => {
 			mapStyle={MapStyle.light}
 			onRender={() => {
 				const newBounds = refMap.current?.getBounds().toArray().flat()
-				console.log({ bounds, newBounds })
+				// console.log({ bounds, newBounds })
 				if (!_.isEqual(newBounds, bounds)) {
 					setBounds(newBounds)
 				}
@@ -69,7 +82,6 @@ const Map: React.FC = () => {
 			</Source>
 			
 			{clusters
-				.filter((cluster) => cluster.properties.cluster)
 				.map((cluster) => {
 					return (
 						<DynamicMarker cluster={cluster} key={cluster.id} TOTAL={TOTAL}/>

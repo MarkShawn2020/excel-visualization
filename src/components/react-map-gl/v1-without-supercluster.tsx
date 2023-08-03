@@ -6,7 +6,8 @@ import { LanguageControl } from '@/components/deck.gl/controls/language.control'
 
 import { usePrevious } from '@radix-ui/react-use-previous'
 import _ from 'lodash'
-import { delMark, DynamicMarker } from '@/components/react-map-gl/marker'
+import { DynamicMarker } from '@/components/react-map-gl/marker'
+import { useMarkersBear } from '@/store'
 
 export const V1WithoutSupercluster = () => {
 	
@@ -14,6 +15,7 @@ export const V1WithoutSupercluster = () => {
 	const previousClusters = usePrevious(clusters)
 	
 	const refMap = useRef<MapRef | null>(null)
+	const { delMarker } = useMarkersBear()
 	
 	const updateMarks = () => {
 		if (!refMap.current?.isSourceLoaded(sourceId)) return
@@ -28,7 +30,7 @@ export const V1WithoutSupercluster = () => {
 		previousClusters
 			.filter((c) => !newClusters.find((cc) => cc.id === c.id))
 			.map((c) => c.id)
-			.forEach(delMark)
+			.forEach(delMarker)
 	}
 	
 	return (
