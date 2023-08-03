@@ -4,19 +4,26 @@ import { toast } from '@/components/ui/use-toast'
 import { read, WorkBook, WorkSheet } from 'xlsx'
 import { ws_to_rdg } from '@/lib/excel'
 import { useEffect, useState } from 'react'
+import _ from 'lodash'
 
 export const ReadXlsx = () => {
 	
 	const { ws, skipRows, cols, setWs, setName, setCols, setRows } = useInputSheetBear()
-	const { setCurrent } = useDisplayColumnBear()
+	const { setMap, setCurrent } = useDisplayColumnBear()
 	
 	useEffect(() => {
 		if (!ws) return
 		
 		const { cols, rows } = ws_to_rdg(ws, skipRows)
-		console.log('parsed sheet data: ', { cols, rows })
 		setCols(cols)
 		setRows(rows)
+		const transposedRows = _.zip(...rows)
+		console.log('parsed sheet data: ', { cols, rows, transposedRows })
+		setMap(_.zipObject(
+				cols.map((col) => col.name) as string[],
+				transposedRows,
+			),
+		)
 	}, [ws, skipRows])
 	
 	useEffect(() => {

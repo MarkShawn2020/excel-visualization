@@ -21,15 +21,15 @@ export const useInputSheetBear = create(combine({
 })))
 
 export const useDisplayColumnBear = create(combine({
+	map: {},
 	current: null,
-	range: {
-		value: Columns[ColumnType.v1].range,
-		scope: Columns[ColumnType.v1].range,
-	},
+	scope: null,
+	filter: null,
 }, (set) => ({
+	setMap: (v: Record<string, any[]>) => set(produce((state) => {state.map = v})),
 	setCurrent: (v: ColumnType) => set(produce((state) => {state.current = v})),
-	setRangeScope: (v: number[]) => set(produce((state) => {state.range.scope = v})),
-	setRangeValue: (v: number[]) => set(produce((state) => {state.range.value = v})),
+	setScope: (v: [number, number]) => set(produce((state) => {state.scope = v})),
+	setFilter: (v: [number, number]) => set(produce((state) => {state.filter = v})),
 })))
 
 export const useMarkersBear = create(combine({}, (set) => ({

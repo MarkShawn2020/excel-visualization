@@ -14,12 +14,24 @@ import MapVisualization from '@/components/react-map-gl/v2-supercluster'
 import { ReadXlsx } from '@/components/xlsx'
 import { clsx } from 'clsx'
 import { Input } from '@/components/ui/input'
+import { useEffect } from 'react'
+import _ from 'lodash'
 
 export default function Home() {
 	const { name, cols, rows, skipRows, setSkipRows, setRows } = useInputSheetBear()
-	const { current, range, setCurrent, setRangeScope, setRangeValue } = useDisplayColumnBear()
+	const { map, current, scope, filter, setCurrent, setScope, setFilter } = useDisplayColumnBear()
 	
-	console.log({ name, cols, rows, current })
+	console.log({ name, cols, rows, map, current, scope, filter })
+	
+	useEffect(() => {
+		const vals = map[current]
+		const max = _.max(vals)
+		const min = _.min(vals)
+		console.debug({ current, vals, min, max })
+		const t = typeof max === 'number' && typeof min === 'number' ? [min, max] : null
+		setScope(t)
+		setFilter(t)
+	}, [current])
 	
 	return (
 		<>
@@ -45,13 +57,7 @@ export default function Home() {
 						<div className={'text-2xl'}>数据操作</div>
 						<div className={'flex items-center gap-2'}>
 							<Label>筛选列指标</Label>
-							<Select
-								value={current}
-								onValueChange={(col) => {
-									setCurrent(col)
-									// setRangeScope(Columns[col].range)
-									// setRangeValue(Columns[col].range)
-								}}>
+							<Select value={current} onValueChange={setCurrent}>
 								<SelectTrigger>
 									<SelectValue placeholder={'当前没有可选列'}/>
 								</SelectTrigger>
@@ -63,9 +69,23 @@ export default function Home() {
 							</Select>
 						</div>
 						
+						<Label>筛选列指标范围 {!scope && '（请先选择合法的数值列）'}</Label>
 						<div className={'flex items-center gap-2'}>
-							<Label>筛选该列指标范围</Label>
-							<Slider defaultValue={range.value} min={range.scope[0]} max={range.scope[1]} step={1} onValueChange={setRangeValue}/>
+							{
+								scope && (
+									<>
+										{scope.map((v) => v.toFixed(0)).join(' - ')}
+										<Slider min={scope[0]} max={scope[1]}
+										        value={filter}
+										        step={1}
+										        minStepsBetweenThumbs={1} // Prevent thumb overlap
+										        onValueChange={(v) => {
+											        console.log('filter: ', v)
+											        setFilter(v)
+										        }}/>
+									</>
+								)
+							}
 						</div>
 					</div>
 				
