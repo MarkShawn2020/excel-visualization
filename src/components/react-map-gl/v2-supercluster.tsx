@@ -1,20 +1,14 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import ReactMapGL, { Layer, MapRef, Marker, NavigationControl, Source, ViewState } from 'react-map-gl'
-import { circleLayerProps, CLUSTER_RADIUS, INITIAL_VIEW_STATE, MAP_PROJECTION, MapStyle, sourceProps, textLayerProps } from '@/config'
-import { IProperties, IViewState } from '@/ds'
-// import Supercluster from 'supercluster'
+import React, { useCallback, useRef, useState } from 'react'
+import ReactMapGL, { MapRef, NavigationControl, Popup, Source } from 'react-map-gl'
+import { CLUSTER_RADIUS, INITIAL_VIEW_STATE, MAP_PROJECTION, MapStyle, sourceProps } from '@/config'
+import { IProperties } from '@/ds'
 import { BBox, Feature, Point } from 'geojson'
-// import useSupercluster from '@/hooks/use-supercluster'
 import { LanguageControl } from '@/components/deck.gl/controls/language.control'
-import Supercluster from 'supercluster'
-import data from '@/../data/full.geo.json'
 import useSupercluster from '@/hooks/use-supercluster'
-import { FlyToInterpolator } from '@deck.gl/core'
 import { DynamicMarker } from '@/components/react-map-gl/marker'
 import _ from 'lodash'
 import { usePrevious } from '@radix-ui/react-use-previous'
 import { useDisplayColumnBear, useMarkersBear, useVisualizationBear } from '@/store' // mark的话 必须加
-
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 
@@ -25,6 +19,7 @@ const Map: React.FC = () => {
 	
 	const [bounds, setBounds] = useState<BBox | undefined>(undefined)
 	const [zoom, setZoom] = useState<number>(INITIAL_VIEW_STATE.zoom)
+	const [selected, setSelected] = useState<Feature<Point> | null>(null)
 	
 	const mapFunction = useCallback((p) => ({
 			...p,
@@ -38,7 +33,6 @@ const Map: React.FC = () => {
 		accumulated.cnt += props.cnt
 	}, [])
 	
-	const [selected, setSelected] = useState<Feature<Point> | null>(null)
 	
 	const { clusters: clusters_ = [], supercluster } = useSupercluster<IProperties>({
 		points: features,
@@ -105,20 +99,20 @@ const Map: React.FC = () => {
 			
 			</Source>
 			
-			{/*{selected && (*/}
-			{/*	<Popup*/}
-			{/*		latitude={selected.geometry.coordinates[1]}*/}
-			{/*		longitude={selected.geometry.coordinates[0]}*/}
-			{/*		closeButton={true}*/}
-			{/*		closeOnClick={false}*/}
-			{/*		onClose={() => setSelected(null)}*/}
-			{/*	>*/}
-			{/*		<div>*/}
-			{/*			<h2>{selected.properties.title}</h2>*/}
-			{/*			<p>{selected.properties.description}</p>*/}
-			{/*		</div>*/}
-			{/*	</Popup>*/}
-			{/*)}*/}
+			{selected && (
+				<Popup
+					latitude={selected.geometry.coordinates[1]}
+					longitude={selected.geometry.coordinates[0]}
+					closeButton={true}
+					closeOnClick={false}
+					onClose={() => setSelected(null)}
+				>
+					<div>
+						<h2>{selected.properties.sum}</h2>
+						<p>{selected.properties.cnt}</p>
+					</div>
+				</Popup>
+			)}
 			
 			<LanguageControl/>
 			<NavigationControl/>

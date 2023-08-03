@@ -1,10 +1,11 @@
-import { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 import { ICluster, IProperties } from '@/ds'
-import { Marker } from 'react-map-gl'
+import { Marker, Popup } from 'react-map-gl'
 
 import { clsx } from 'clsx'
-import { useMarkersBear } from '@/store' // mark的话 必须加
+import { useMarkersBear } from '@/store'
+import { useHover } from '@mantine/hooks' // mark的话 必须加
 
 
 export const DynamicMarker = ({ cluster, TOTAL }: {
@@ -12,6 +13,8 @@ export const DynamicMarker = ({ cluster, TOTAL }: {
 	TOTAL: number
 }) => {
 	const ref = useRef<mapboxgl.Marker | null>(null)
+	const { hovered, ref: refHover } = useHover()
+	
 	const { addMarker } = useMarkersBear()
 	
 	useEffect(() => {
@@ -22,34 +25,50 @@ export const DynamicMarker = ({ cluster, TOTAL }: {
 	const [lon, lat] = geometry.coordinates
 	const display = `${properties.sum.toFixed(1)}\n(${properties.cnt})`
 	
-	const r = 150 + Math.sqrt(properties.sum / TOTAL) * 200
+	const r = 40 + Math.sqrt(properties.sum / TOTAL) * 80
 	const w = r * 2
 	
-	console.log({ cluster, display, TOTAL, r })
+	console.log({ cluster, display, TOTAL, r, hovered })
+	
 	
 	return (
-		<Marker ref={ref} key={cluster.id} longitude={lon} latitude={lat}>
-			<svg width={w} height={w} viewBox={`0 0 ${w} ${w}`} textAnchor="middle" className={''}>
-				{/*{*/}
-				{/*	_.range(5).map((i) =>*/}
-				{/*		<CreateDonutSegment*/}
-				{/*			key={i}*/}
-				{/*			start={offsets[i] / total}*/}
-				{/*			end={(offsets[i] + counts[i]) / total}*/}
-				{/*			r={r}*/}
-				{/*			r0={r0}*/}
-				{/*		/>,*/}
-				{/*	)*/}
-				{/*}*/}
-				<circle cx={r} cy={r} r={r / 8} fill="#ef4444"/>
-				<circle cx={r} cy={r} r={r / 8} fill="#ef444455" className={clsx('animate-ping origin-center anim-duration-[3000ms]')}/>
-				<text dominantBaseline="central" transform={`translate(${r}, ${r})`} fill={'white'} fontSize={14}>
-					{display.split('\n').map((line, index) => (
-						<tspan key={index} x={0} y={`${.9 * (index)}em`}>{line}</tspan>
+		<>
+			<Marker ref={ref} key={cluster.id} longitude={lon} latitude={lat}>
+				<svg width={w} height={w} viewBox={`0 0 ${w} ${w}`} textAnchor="middle"
+					// className={'bg-cyan-800'}
+				>
+					{/*{*/}
+					{/*	_.range(5).map((i) =>*/}
+					{/*		<CreateDonutSegment*/}
+					{/*			key={i}*/}
+					{/*			start={offsets[i] / total}*/}
+					{/*			end={(offsets[i] + counts[i]) / total}*/}
+					{/*			r={r}*/}
+					{/*			r0={r0}*/}
+					{/*		/>,*/}
+					{/*	)*/}
+					{/*}*/}
+					<circle cx={r} cy={r} r={r / 2} fill="#ef4444"/>
+					{/*<circle cx={r} cy={r} r={r / 2} fill="#ef444455" className={clsx('animate-ping origin-center anim-duration-[3000ms]')}/>*/}
+					<text dominantBaseline="central" transform={`translate(${r}, ${r})`} fill={'white'} fontSize={14} ref={refHover}>
+						{display.split('\n').map((line, index) => (
+							<tspan key={index} x={0} y={`${.9 * (index)}em`}>{line}</tspan>
+						))}
+					</text>
+				</svg>
+			
+			</Marker>
+			
+			{hovered && (
+				<div className={'absolute inset-0 w-60 h-fit  | bg-card text-accent-foreground flex flex-col gap-1'}>
+					{Object.entries(properties).map(([key, val]) => (
+						<div key={key}>
+							{key}: {val}
+						</div>
 					))}
-				</text>
-			</svg>
-		</Marker>
+				</div>
+			)}
+		</>
 	)
 }
 

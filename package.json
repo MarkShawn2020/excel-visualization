@@ -19,6 +19,7 @@
     "@deck.gl/mapbox": "^8.9.22",
     "@deck.gl/react": "^8.9.22",
     "@loaders.gl/csv": "^3.4.8",
+    "@mantine/hooks": "^6.0.17",
     "@mapbox/mapbox-gl-draw": "^1.4.2",
     "@mapbox/mapbox-gl-language": "^1.0.1",
     "@radix-ui/react-label": "^2.0.2",
