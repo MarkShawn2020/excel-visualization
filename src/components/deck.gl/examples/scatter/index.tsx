@@ -5,7 +5,7 @@ import React from 'react'
 import Map from 'react-map-gl'
 import DeckGL from '@deck.gl/react'
 
-import { Columns, ColumnType, INITIAL_VIEW_STATE, MapStyle } from '@/config'
+import { INITIAL_VIEW_STATE, MapStyle } from '@/config'
 import { LanguageControl } from '@/components/deck.gl/controls/language.control'
 import { DrawControl } from '@/components/deck.gl/controls/draw.control'
 import data from '../../../../../data/table.json'
@@ -19,6 +19,7 @@ import { HexagonLayer } from '@deck.gl/aggregation-layers'
 
 import { DataFilterExtension } from '@deck.gl/extensions'
 import { AmbientLight, LightingEffect, PointLight } from '@deck.gl/core'
+import { Columns, ColumnType } from '@/__archive__/config'
 
 export const colorRange = [
 	[1, 152, 189],

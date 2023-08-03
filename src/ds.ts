@@ -41,6 +41,6 @@ export type ICluster<P extends IProperties> = IFeature<P> & {
 		case4: number
 		case5: number
 		cnt: number
-		sum: number
+		sum: number | string | any
 	}
 }

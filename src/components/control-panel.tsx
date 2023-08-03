@@ -8,23 +8,17 @@ import DataGrid from 'react-data-grid'
 import { Separator } from '@/components/ui/separator'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Slider } from '@/components/ui/slider'
+import { LnglatFormat } from '@/config'
 
 export const ControlPanel = () => {
 	const { name, cols, rows, skipRows, setSkipRows, setRows } = useInputSheetBear()
-	const { map, current, scope, setCurrent, setScope } = useDisplayColumnBear()
-	const { lnglatCol, setFeatures, setLnglatCol, setLnglatData } = useVisualizationBear()
+	const { map, current, scope, setCurrent } = useDisplayColumnBear()
+	const { lnglatCol, setLnglatCol, features } = useVisualizationBear()
 	
 	console.debug({ name, cols, rows, map, current, scope })
 	
-	useEffect(() => {
-		const vals = map[current]
-		const max = _.max(vals)
-		const min = _.min(vals)
-		console.debug({ current, vals, min, max })
-		const t = typeof max === 'number' && typeof min === 'number' ? [min, max] : null
-		setScope(t)
-	}, [current])
 	
+	const selectColTitle = cols?.length ? '选择坐标列' : '当前没有可选列'
 	
 	return (
 		<div id={'control-panel'} className={'w-[360px] whitespace-nowrap shrink-0 h-full p-4 | flex flex-col gap-4'}>
@@ -47,10 +41,10 @@ export const ControlPanel = () => {
 				<div className={'text-2xl'}>数据操作</div>
 				
 				<div className={'flex items-center gap-2'}>
-					<Label>指定坐标点列名</Label>
+					<Label>有效坐标个数： {features.length}</Label>
 					<Select value={lnglatCol} onValueChange={setLnglatCol}>
 						<SelectTrigger>
-							<SelectValue placeholder={'当前没有可选列'}/>
+							<SelectValue placeholder={selectColTitle}/>
 						</SelectTrigger>
 						<SelectContent>
 							{cols
@@ -64,7 +58,7 @@ export const ControlPanel = () => {
 					<Label>指定可视化列指标</Label>
 					<Select value={current} onValueChange={setCurrent}>
 						<SelectTrigger>
-							<SelectValue placeholder={'当前没有可选列'}/>
+							<SelectValue placeholder={selectColTitle}/>
 						</SelectTrigger>
 						<SelectContent>
 							{cols

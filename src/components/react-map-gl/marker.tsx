@@ -1,17 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 import { ICluster, IProperties } from '@/ds'
-import { Marker, Popup } from 'react-map-gl'
+import { Marker, Popup, useMap } from 'react-map-gl'
 
 import { clsx } from 'clsx'
 import { useMarkersBear } from '@/store'
 import { useHover } from '@mantine/hooks' // mark的话 必须加
 
 
-export const DynamicMarker = ({ cluster, TOTAL }: {
+export const DynamicMarker = ({ cluster, total }: {
 	cluster: ICluster<IProperties>
-	TOTAL: number
+	total: {
+		sum: any
+		cnt: number
+	}
 }) => {
+	const isPct = typeof total.sum === 'number'
+	const map = useMap()
 	const ref = useRef<mapboxgl.Marker | null>(null)
 	const { hovered, ref: refHover } = useHover()
 	
@@ -23,18 +28,21 @@ export const DynamicMarker = ({ cluster, TOTAL }: {
 	
 	const { geometry, properties } = cluster
 	const [lon, lat] = geometry.coordinates
-	const display = `${properties.sum.toFixed(1)}\n(${properties.cnt})`
+	const display = isPct ? [properties.sum.toFixed(1), properties.cnt].join('\n') : properties.cnt.toString()
 	
-	const r = 40 + Math.sqrt(properties.sum / TOTAL) * 80
+	const r = 40 + Math.sqrt(isPct ? properties.sum / total.sum : properties.cnt / total.cnt) * 80
 	const w = r * 2
 	
-	console.log({ cluster, display, TOTAL, r, hovered })
+	console.log({ cluster, display, total, r, hovered })
 	
 	
 	return (
 		<>
-			<Marker ref={ref} key={cluster.id} longitude={lon} latitude={lat}>
-				<svg width={w} height={w} viewBox={`0 0 ${w} ${w}`} textAnchor="middle"
+			<Marker ref={ref} key={cluster.id} longitude={lon} latitude={lat} onClick={() => {
+				console.log('clicked')
+				map.current?.flyTo({ center: cluster.geometry.coordinates, essential: true })
+			}}>
+				<svg width={w} height={w} viewBox={`0 0 ${w} ${w}`} textAnchor="middle" ref={refHover}
 					// className={'bg-cyan-800'}
 				>
 					{/*{*/}
@@ -49,8 +57,8 @@ export const DynamicMarker = ({ cluster, TOTAL }: {
 					{/*	)*/}
 					{/*}*/}
 					<circle cx={r} cy={r} r={r / 2} fill="#ef4444"/>
-					{/*<circle cx={r} cy={r} r={r / 2} fill="#ef444455" className={clsx('animate-ping origin-center anim-duration-[3000ms]')}/>*/}
-					<text dominantBaseline="central" transform={`translate(${r}, ${r})`} fill={'white'} fontSize={14} ref={refHover}>
+					<circle cx={r} cy={r} r={r / 2} fill="#ef444455" className={clsx('animate-ping origin-center anim-duration-[3000ms]')}/>
+					<text dominantBaseline="central" transform={`translate(${r}, ${r})`} fill={'white'} fontSize={14}>
 						{display.split('\n').map((line, index) => (
 							<tspan key={index} x={0} y={`${.9 * (index)}em`}>{line}</tspan>
 						))}

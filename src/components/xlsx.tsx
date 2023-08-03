@@ -5,13 +5,12 @@ import { read, WorkBook } from 'xlsx'
 import { ws_to_rdg } from '@/lib/excel'
 import { useEffect } from 'react'
 import _ from 'lodash'
-import { LngLatColName, LnglatFormat } from '@/config'
+import { LnglatFormat } from '@/config'
 
 export const ReadXlsx = () => {
 	
 	const { ws, skipRows, cols, setWs, setName, setCols, setRows } = useInputSheetBear()
 	const { setMap, setCurrent } = useDisplayColumnBear()
-	const { setFeatures } = useVisualizationBear()
 	
 	useEffect(() => {
 		if (!ws) return
@@ -19,27 +18,8 @@ export const ReadXlsx = () => {
 		const { cols, rows } = ws_to_rdg(ws, skipRows)
 		setCols(cols)
 		setRows(rows)
-		const colNames = cols.map((col) => col.name) as string[]
-		const map = _.zipObject(colNames, _.zip(...rows))
+		const map = _.zipObject(cols.map((col) => col.name) as string[], _.zip(...rows))
 		setMap(map)
-		
-		const lnglatColIndex = colNames.findIndex((v) => v === LngLatColName)
-		console.debug({ cols, rows, map, lnglatColIndex })
-		if (lnglatColIndex < 0) return
-		
-		const features = rows
-			.map((row) => ({
-				type: 'Feature',
-				properties: _.zipObject(colNames, row),
-				geometry: {
-					type: 'Point',
-					coordinates: row[lnglatColIndex].match(LnglatFormat)?.slice(1, 3).map(parseFloat),
-				},
-			}))
-			.filter((feature) => feature.geometry.coordinates)
-		setFeatures(features)
-		console.debug({ features })
-		
 	}, [ws, skipRows])
 	
 	useEffect(() => {

@@ -1,25 +1,42 @@
-import React, { useCallback, useRef, useState } from 'react'
-import ReactMapGL, { MapRef, NavigationControl, Popup, Source } from 'react-map-gl'
-import { CLUSTER_RADIUS, INITIAL_VIEW_STATE, MAP_PROJECTION, MapStyle, sourceProps } from '@/config'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import ReactMapGL, { MapRef, NavigationControl } from 'react-map-gl'
+import { CLUSTER_RADIUS, INITIAL_VIEW_STATE, LnglatFormat, MAP_PROJECTION, MapStyle, MAX_ZOOM } from '@/config'
 import { IProperties } from '@/ds'
-import { BBox, Feature, Point } from 'geojson'
+import { BBox } from 'geojson'
 import { LanguageControl } from '@/components/deck.gl/controls/language.control'
 import useSupercluster from '@/hooks/use-supercluster'
 import { DynamicMarker } from '@/components/react-map-gl/marker'
 import _ from 'lodash'
 import { usePrevious } from '@radix-ui/react-use-previous'
-import { useDisplayColumnBear, useMarkersBear, useVisualizationBear } from '@/store' // mark的话 必须加
+import { useDisplayColumnBear, useInputSheetBear, useMarkersBear, useVisualizationBear } from '@/store' // mark的话 必须加
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-
 const Map: React.FC = () => {
+	const { cols, rows } = useInputSheetBear()
 	const { current } = useDisplayColumnBear()
-	const { features } = useVisualizationBear()
+	const { lnglatCol, features, setFeatures } = useVisualizationBear()
 	const { delMarker } = useMarkersBear()
+	
+	useEffect(() => {
+		const colIndex = cols.findIndex((v) => v.name === lnglatCol)
+		if (colIndex < 0) return
+		
+		const features = rows
+			.map((row) => ({
+				type: 'Feature',
+				properties: _.zipObject(cols.map((v) => v.name), row),
+				geometry: {
+					type: 'Point',
+					coordinates: String(row[colIndex]).match(LnglatFormat)?.slice(1, 3).map(parseFloat),
+				},
+			}))
+			.filter((feature) => feature.geometry.coordinates)
+		setFeatures(features)
+		console.debug({ features })
+	}, [lnglatCol])
 	
 	const [bounds, setBounds] = useState<BBox | undefined>(undefined)
 	const [zoom, setZoom] = useState<number>(INITIAL_VIEW_STATE.zoom)
-	const [selected, setSelected] = useState<Feature<Point> | null>(null)
 	
 	const mapFunction = useCallback((p) => ({
 			...p,
@@ -40,14 +57,20 @@ const Map: React.FC = () => {
 		zoom,
 		options: {
 			radius: CLUSTER_RADIUS,
-			maxZoom: 20,
+			maxZoom: MAX_ZOOM,
 			map: mapFunction,
 			reduce: reduceFunction,
 			log: false,
+			minPoints: 1,
 		},
 	})
 	const clusters = clusters_
-		.filter((cluster) => typeof cluster.properties.sum === 'number')
+		.map((cluster) => _.merge({}, cluster, {
+			properties: {
+				sum: cluster.properties.sum ?? cluster.properties[current],
+				cnt: cluster.properties.cnt ?? 1,
+			},
+		}))
 	
 	const previousCluster = usePrevious(clusters)
 	previousCluster.forEach((c) => {
@@ -57,12 +80,14 @@ const Map: React.FC = () => {
 	
 	const refMap = useRef<MapRef | null>(null)
 	
-	const TOTAL = _.sum(clusters.map((cluster) => cluster.properties.sum))
+	const total = {
+		sum: _.sum(clusters.map((cluster) => cluster.properties.sum)),
+		cnt: _.sum(clusters.map((cluster) => cluster.properties.cnt)),
+	}
 	
-	console.log({ features, clusters })
+	console.log({ features, clusters, clusters_ })
 	
 	return (
-		// {...viewport}
 		<ReactMapGL
 			ref={refMap}
 			initialViewState={INITIAL_VIEW_STATE}
@@ -72,47 +97,15 @@ const Map: React.FC = () => {
 			mapStyle={MapStyle.light}
 			onRender={() => {
 				const newBounds = refMap.current?.getBounds().toArray().flat()
+				if (!_.isEqual(newBounds, bounds)) setBounds(newBounds)
+				
 				const newZoom = refMap.current?.getZoom()
-				// console.log({ bounds, newBounds })
-				if (!_.isEqual(newBounds, bounds)) {
-					setBounds(newBounds)
-				}
-				if (newZoom && newZoom !== zoom) {
-					setZoom(newZoom)
-				}
+				if (newZoom && newZoom !== zoom) setZoom(newZoom)
 			}}
 		>
 			
-			<Source {...sourceProps}>
-				
-				{/*<Layer {...circleLayerProps}/>*/}
-				
-				{/*<Layer {...textLayerProps}/>*/}
-				
-				
-				{clusters
-					.map((cluster) => {
-						return (
-							<DynamicMarker cluster={cluster} key={cluster.id} TOTAL={TOTAL}/>
-						)
-					})}
 			
-			</Source>
-			
-			{selected && (
-				<Popup
-					latitude={selected.geometry.coordinates[1]}
-					longitude={selected.geometry.coordinates[0]}
-					closeButton={true}
-					closeOnClick={false}
-					onClose={() => setSelected(null)}
-				>
-					<div>
-						<h2>{selected.properties.sum}</h2>
-						<p>{selected.properties.cnt}</p>
-					</div>
-				</Popup>
-			)}
+			{clusters.map((cluster) => <DynamicMarker cluster={cluster} key={cluster.id} total={total}/>)}
 			
 			<LanguageControl/>
 			<NavigationControl/>

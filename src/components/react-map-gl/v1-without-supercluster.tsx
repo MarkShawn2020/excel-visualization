@@ -1,5 +1,5 @@
 import ReactMapGl, { Layer, MapRef, NavigationControl, Source } from 'react-map-gl'
-import { circleLayerProps, INITIAL_VIEW_STATE, MAP_PROJECTION, MapStyle, sourceId, sourceProps, textLayerProps } from '@/config'
+import { INITIAL_VIEW_STATE, MAP_PROJECTION, MapStyle, sourceId } from '@/config'
 import { useRef, useState } from 'react'
 import { ICluster, IProperties } from '@/ds'
 import { LanguageControl } from '@/components/deck.gl/controls/language.control'
@@ -8,6 +8,7 @@ import { usePrevious } from '@radix-ui/react-use-previous'
 import _ from 'lodash'
 import { DynamicMarker } from '@/components/react-map-gl/marker'
 import { useMarkersBear } from '@/store'
+import { circleLayerProps, sourceProps, textLayerProps } from '@/__archive__/config'
 
 export const V1WithoutSupercluster = () => {
 	
