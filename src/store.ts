@@ -6,6 +6,7 @@ import mapboxgl from 'mapbox-gl'
 import { WorkSheet } from 'xlsx'
 import { IFeature, IProperties } from '@/ds'
 import { ColumnType } from '@/__archive__/config'
+import { MapStyle } from '@/config'
 
 export const useInputSheetBear = create(combine({
 	ws: undefined,
@@ -58,4 +59,11 @@ export const useMarkersBear = create(combine({}, (set) => ({
 			return state
 		}
 	}),
+})))
+
+
+export const useUIBear = create(combine({
+	mapStyle: MapStyle.light,
+}, (set) => ({
+	setMapStyle: (v: MapStyle) => set(produce((state) => {state.mapStyle = v})),
 })))

@@ -8,7 +8,7 @@ import useSupercluster from '@/hooks/use-supercluster'
 import { DynamicMarker } from '@/components/react-map-gl/marker'
 import _ from 'lodash'
 import { usePrevious } from '@radix-ui/react-use-previous'
-import { useDisplayColumnBear, useInputSheetBear, useMarkersBear, useVisualizationBear } from '@/store' // mark的话 必须加
+import { useDisplayColumnBear, useInputSheetBear, useMarkersBear, useUIBear, useVisualizationBear } from '@/store' // mark的话 必须加
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 const Map: React.FC = () => {
@@ -16,6 +16,7 @@ const Map: React.FC = () => {
 	const { current } = useDisplayColumnBear()
 	const { lnglatCol, features, setFeatures } = useVisualizationBear()
 	const { delMarker } = useMarkersBear()
+	const { mapStyle } = useUIBear()
 	
 	useEffect(() => {
 		const colIndex = cols.findIndex((v) => v.name === lnglatCol)
@@ -94,7 +95,7 @@ const Map: React.FC = () => {
 			projection={MAP_PROJECTION}
 			mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
 			// interactiveLayerIds={[`clusters-category`]}
-			mapStyle={MapStyle.light}
+			mapStyle={mapStyle}
 			onRender={() => {
 				const newBounds = refMap.current?.getBounds().toArray().flat()
 				if (!_.isEqual(newBounds, bounds)) setBounds(newBounds)

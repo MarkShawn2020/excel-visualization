@@ -25,7 +25,7 @@ export const INITIAL_VIEW_STATE: IViewState = {
 
 export enum MapStyle {
 	general = 'mapbox://styles/markshawn2020/clks332uh00bg01o867252fve',
-	dark = 'mapbox://styles/mapbox/dark-v9',
+	dark = 'mapbox://styles/mapbox/dark-v11',
 	light = 'mapbox://styles/mapbox/light-v11'
 }
 

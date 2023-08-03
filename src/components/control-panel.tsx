@@ -1,4 +1,4 @@
-import { useDisplayColumnBear, useInputSheetBear, useVisualizationBear } from '@/store'
+import { useDisplayColumnBear, useInputSheetBear, useUIBear, useVisualizationBear } from '@/store'
 import { useEffect } from 'react'
 import _ from 'lodash'
 import { Label } from '@/components/ui/label'
@@ -8,12 +8,13 @@ import DataGrid from 'react-data-grid'
 import { Separator } from '@/components/ui/separator'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Slider } from '@/components/ui/slider'
-import { LnglatFormat } from '@/config'
+import { LnglatFormat, MapStyle } from '@/config'
 
 export const ControlPanel = () => {
 	const { name, cols, rows, skipRows, setSkipRows, setRows } = useInputSheetBear()
 	const { map, current, scope, setCurrent } = useDisplayColumnBear()
 	const { lnglatCol, setLnglatCol, features } = useVisualizationBear()
+	const { mapStyle, setMapStyle } = useUIBear()
 	
 	console.debug({ name, cols, rows, map, current, scope })
 	
@@ -68,6 +69,25 @@ export const ControlPanel = () => {
 					</Select>
 				</div>
 			
+			</div>
+			
+			<Separator/>
+			<div className={'flex flex-col gap-2'}>
+				<div className={'text-2xl'}>UI</div>
+				
+				
+				<div className={'flex items-center gap-2'}>
+					<Label>地图风格</Label>
+					<Select value={mapStyle} onValueChange={setMapStyle}>
+						<SelectTrigger>
+							<SelectValue placeholder={'选择'}/>
+						</SelectTrigger>
+						<SelectContent>
+							{Object.entries(MapStyle)
+								.map(([k, v]) => <SelectItem key={k} value={v}>{k}</SelectItem>)}
+						</SelectContent>
+					</Select>
+				</div>
 			</div>
 		
 		</div>
