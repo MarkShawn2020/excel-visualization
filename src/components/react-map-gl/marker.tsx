@@ -4,7 +4,7 @@ import { ICluster, IProperties } from '@/ds'
 import { Marker, Popup, useMap } from 'react-map-gl'
 
 import { clsx } from 'clsx'
-import { useInputSheetBear, useMarkersBear } from '@/store'
+import { useInputBear, useMarkersBear } from '@/store'
 import { useHover } from '@mantine/hooks' // mark的话 必须加
 
 
@@ -34,7 +34,7 @@ export const DynamicMarker = ({ cluster, total, zoom }: {
 	const r = 40 + Math.sqrt(isPct ? properties.sum / total.sum : properties.cnt / total.cnt) * 80
 	const w = r * 2
 	
-	console.log({ cluster, display, total, r, hovered })
+	console.debug({ cluster, display, total, r, hovered })
 	
 	
 	return (

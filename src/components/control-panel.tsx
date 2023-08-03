@@ -1,22 +1,20 @@
-import { useDisplayColumnBear, useInputSheetBear, useUIBear, useVisualizationBear } from '@/store'
-import { useEffect } from 'react'
-import _ from 'lodash'
+import { useControlBear, useInputBear, useUIBear, useVisualizationBear } from '@/store'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { ReadXlsx } from '@/components/xlsx'
-import DataGrid from 'react-data-grid'
 import { Separator } from '@/components/ui/separator'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Slider } from '@/components/ui/slider'
-import { LnglatFormat, MapStyle } from '@/config'
+import { MapStyle } from '@/config'
+import DataGrid from 'react-data-grid'
+import { Button } from '@/components/ui/button'
 
 export const ControlPanel = () => {
-	const { name, cols, rows, skipRows, setSkipRows, setRows } = useInputSheetBear()
-	const { map, current, scope, setCurrent } = useDisplayColumnBear()
+	const { fileName, sheetName, cols, rows, skipRows, setSkipRows, setRows } = useInputBear()
+	const { map, current, scope, setCurrent } = useControlBear()
 	const { lnglatCol, setLnglatCol, features } = useVisualizationBear()
 	const { mapStyle, setMapStyle } = useUIBear()
 	
-	console.debug({ name, cols, rows, map, current, scope })
+	console.debug({ fileName, sheetName, cols, rows, map, current, scope })
 	
 	
 	const selectColTitle = cols?.length ? '选择坐标列' : '当前没有可选列'
@@ -30,11 +28,19 @@ export const ControlPanel = () => {
 					<Label htmlFor="xlsx">跳过开头空行数</Label>
 					<Input type={'number'} defaultValue={skipRows} onBlur={(event) => setSkipRows(event.currentTarget.value)}/>
 				</div>
-				<div className="flex items-center gap-2">
+				<Button className="flex items-center gap-2" variant={'outline'}>
 					<Label htmlFor="xlsx">上传 Excel 表格</Label>
 					<ReadXlsx/>
-				</div>
-				{name && <DataGrid className={'w-full'} columns={cols} rows={rows} onRowsChange={setRows}/>}
+				</Button>
+				
+				{sheetName && (
+					<>
+						<p className={'text-muted-foreground'}>当前文件： {fileName}</p>
+						<p className={'text-muted-foreground'}>当前表名： {sheetName}</p>
+					</>
+				)}
+				
+				{!!cols?.length && <DataGrid className={'w-full'} columns={cols} rows={rows} onRowsChange={setRows}/>}
 			</div>
 			
 			<Separator/>
@@ -90,6 +96,10 @@ export const ControlPanel = () => {
 				</div>
 			</div>
 		
+		
 		</div>
 	)
 }
+
+export default ControlPanel
+

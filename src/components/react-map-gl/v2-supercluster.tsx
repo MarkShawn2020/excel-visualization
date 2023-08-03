@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import ReactMapGL, { MapRef, NavigationControl } from 'react-map-gl'
-import { CLUSTER_RADIUS, INITIAL_VIEW_STATE, LnglatFormat, MAP_PROJECTION, MapStyle, MAX_ZOOM } from '@/config'
+import { CLUSTER_RADIUS, INITIAL_VIEW_STATE, LnglatFormat, MAP_PROJECTION, MAX_ZOOM } from '@/config'
 import { IProperties } from '@/ds'
 import { BBox } from 'geojson'
 import { LanguageControl } from '@/components/deck.gl/controls/language.control'
@@ -8,12 +8,11 @@ import useSupercluster from '@/hooks/use-supercluster'
 import { DynamicMarker } from '@/components/react-map-gl/marker'
 import _ from 'lodash'
 import { usePrevious } from '@radix-ui/react-use-previous'
-import { useDisplayColumnBear, useInputSheetBear, useMarkersBear, useUIBear, useVisualizationBear } from '@/store' // mark的话 必须加
-import 'mapbox-gl/dist/mapbox-gl.css'
+import { useControlBear, useInputBear, useMarkersBear, useUIBear, useVisualizationBear } from '@/store' // mark的话 必须加
 
 const Map: React.FC = () => {
-	const { cols, rows } = useInputSheetBear()
-	const { current } = useDisplayColumnBear()
+	const { cols, rows } = useInputBear()
+	const { current } = useControlBear()
 	const { lnglatCol, features, setFeatures } = useVisualizationBear()
 	const { delMarker } = useMarkersBear()
 	const { mapStyle } = useUIBear()
@@ -86,7 +85,7 @@ const Map: React.FC = () => {
 		cnt: _.sum(clusters.map((cluster) => cluster.properties.cnt)),
 	}
 	
-	console.log({ features, clusters, clusters_ })
+	console.debug({ features, clusters, clusters_ })
 	
 	return (
 		<ReactMapGL
