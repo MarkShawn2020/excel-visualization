@@ -52,7 +52,8 @@ const Map: React.FC = () => {
 			log: false,
 		},
 	})
-	const clusters = clusters_.filter((cluster) => typeof cluster.properties.sum === 'number')
+	const clusters = clusters_
+		.filter((cluster) => typeof cluster.properties.sum === 'number')
 	
 	const previousCluster = usePrevious(clusters)
 	previousCluster.forEach((c) => {

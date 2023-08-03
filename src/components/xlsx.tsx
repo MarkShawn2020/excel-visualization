@@ -1,13 +1,11 @@
 import { useDisplayColumnBear, useInputSheetBear, useVisualizationBear } from '@/store'
 import { Input } from '@/components/ui/input'
 import { toast } from '@/components/ui/use-toast'
-import { read, WorkBook, WorkSheet } from 'xlsx'
+import { read, WorkBook } from 'xlsx'
 import { ws_to_rdg } from '@/lib/excel'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import _ from 'lodash'
-
-export const LngLatColName = '坐标点'
-export const LnglatFormat = /^([\d.]+),([\d.]+)$/
+import { LngLatColName, LnglatFormat } from '@/config'
 
 export const ReadXlsx = () => {
 	

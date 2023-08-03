@@ -11,10 +11,10 @@ import { Slider } from '@/components/ui/slider'
 
 export const ControlPanel = () => {
 	const { name, cols, rows, skipRows, setSkipRows, setRows } = useInputSheetBear()
-	const { map, current, scope, filter, setCurrent, setScope, setFilter } = useDisplayColumnBear()
+	const { map, current, scope, setCurrent, setScope } = useDisplayColumnBear()
 	const { lnglatCol, setFeatures, setLnglatCol, setLnglatData } = useVisualizationBear()
 	
-	console.debug({ name, cols, rows, map, current, scope, filter })
+	console.debug({ name, cols, rows, map, current, scope })
 	
 	useEffect(() => {
 		const vals = map[current]
@@ -23,12 +23,8 @@ export const ControlPanel = () => {
 		console.debug({ current, vals, min, max })
 		const t = typeof max === 'number' && typeof min === 'number' ? [min, max] : null
 		setScope(t)
-		setFilter(t)
 	}, [current])
 	
-	useEffect(() => {
-	
-	}, [lnglatCol])
 	
 	return (
 		<div id={'control-panel'} className={'w-[360px] whitespace-nowrap shrink-0 h-full p-4 | flex flex-col gap-4'}>
@@ -65,7 +61,7 @@ export const ControlPanel = () => {
 				</div>
 				
 				<div className={'flex items-center gap-2'}>
-					<Label>筛选列指标</Label>
+					<Label>指定可视化列指标</Label>
 					<Select value={current} onValueChange={setCurrent}>
 						<SelectTrigger>
 							<SelectValue placeholder={'当前没有可选列'}/>
@@ -77,25 +73,7 @@ export const ControlPanel = () => {
 						</SelectContent>
 					</Select>
 				</div>
-				
-				<Label>筛选列指标范围 {!scope && '（请先选择合法的数值列）'}</Label>
-				<div className={'flex items-center gap-2'}>
-					{
-						scope && (
-							<>
-								{scope.map((v) => v.toFixed(0)).join(' - ')}
-								<Slider min={scope[0]} max={scope[1]}
-								        value={filter}
-								        step={1}
-								        minStepsBetweenThumbs={1} // Prevent thumb overlap
-								        onValueChange={(v) => {
-									        console.log('filter: ', v)
-									        setFilter(v)
-								        }}/>
-							</>
-						)
-					}
-				</div>
+			
 			</div>
 		
 		</div>

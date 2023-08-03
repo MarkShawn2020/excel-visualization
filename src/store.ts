@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { combine } from 'zustand/middleware'
 import { produce } from 'immer'
-import { Columns, ColumnType } from '@/config'
+import { Columns, ColumnType, LngLatColName } from '@/config'
 import { RefObject } from 'react'
 import mapboxgl from 'mapbox-gl'
 import { WorkSheet } from 'xlsx'
@@ -25,17 +25,15 @@ export const useDisplayColumnBear = create(combine({
 	map: {},
 	current: null,
 	scope: null,
-	filter: null,
 }, (set) => ({
 	setMap: (v: Record<string, any[]>) => set(produce((state) => {state.map = v})),
 	setCurrent: (v: ColumnType) => set(produce((state) => {state.current = v})),
 	setScope: (v: [number, number]) => set(produce((state) => {state.scope = v})),
-	setFilter: (v: [number, number]) => set(produce((state) => {state.filter = v})),
 })))
 
 export const useVisualizationBear = create(combine({
 	features: [],
-	lnglatCol: null,
+	lnglatCol: LngLatColName,
 	lnglatData: [],
 }, (set) => ({
 	setFeatures: (v: IFeature<IProperties>[]) => set(produce((state) => {state.features = v})),

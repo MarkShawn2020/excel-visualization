@@ -120,3 +120,6 @@ export const textLayerProps: SymbolLayer = {
 }
 
 export const MAP_PROJECTION = 'albers' // 最适合查看小区域
+
+export const LngLatColName = '坐标点'
+export const LnglatFormat = /^([\d.]+),([\d.]+)$/
