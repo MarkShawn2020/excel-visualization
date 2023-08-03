@@ -60,7 +60,7 @@ const Map: React.FC = () => {
 	const refMap = useRef<MapRef | null>(null)
 	
 	const TOTAL = _.sum(clusters.map((cluster) => cluster.properties.value))
-	console.log('[SuperCluster] ', clusters)
+	console.debug('clusters: ', clusters)
 	
 	return (
 		// {...viewport}

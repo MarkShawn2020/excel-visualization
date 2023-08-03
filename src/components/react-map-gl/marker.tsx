@@ -26,7 +26,7 @@ export const DynamicMarker = ({ cluster, TOTAL }: {
 	const r = 100 + Math.sqrt(value / TOTAL) * 200
 	const w = r * 2
 	
-	console.log({ properties, display, value, TOTAL, r })
+	console.debug({ properties, display, value, TOTAL, r })
 	
 	return (
 		<Marker ref={ref} key={cluster.id} longitude={lon} latitude={lat}>
