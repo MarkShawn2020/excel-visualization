@@ -13,7 +13,7 @@ import { FlyToInterpolator } from '@deck.gl/core'
 import { DynamicMarker } from '@/components/react-map-gl/marker'
 import _ from 'lodash'
 import { usePrevious } from '@radix-ui/react-use-previous'
-import { useMarkersBear } from '@/store' // mark的话 必须加
+import { useMarkersBear, useVisualizationBear } from '@/store' // mark的话 必须加
 
 import 'mapbox-gl/dist/mapbox-gl.css'
 
@@ -25,14 +25,13 @@ const reduceFunction = (accumulated, props) => {
 }
 
 const Map: React.FC = () => {
-	const ref = useRef<MapRef | null>(null)
+	const { features } = useVisualizationBear()
+	const { delMarker } = useMarkersBear()
+	
 	const [bounds, setBounds] = useState<BBox | undefined>(undefined)
 	const [zoom, setZoom] = useState<number>(INITIAL_VIEW_STATE.zoom)
-	const [viewport, setViewport] = useState<IViewState>(INITIAL_VIEW_STATE)
 	
-	const [features, setFeatures] = useState<Supercluster.PointFeature<IProperties>[]>(data.features)
 	const [selected, setSelected] = useState<Feature<Point> | null>(null)
-	const { delMarker } = useMarkersBear()
 	
 	const { clusters: clusters_ = [], supercluster } = useSupercluster<IProperties>({
 		points: features,
@@ -60,7 +59,8 @@ const Map: React.FC = () => {
 	const refMap = useRef<MapRef | null>(null)
 	
 	const TOTAL = _.sum(clusters.map((cluster) => cluster.properties.value))
-	console.debug('clusters: ', clusters)
+	
+	console.log({ features, clusters })
 	
 	return (
 		// {...viewport}

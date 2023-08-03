@@ -1,4 +1,4 @@
-import { useDisplayColumnBear, useInputSheetBear } from '@/store'
+import { useDisplayColumnBear, useInputSheetBear, useVisualizationBear } from '@/store'
 import { Input } from '@/components/ui/input'
 import { toast } from '@/components/ui/use-toast'
 import { read, WorkBook, WorkSheet } from 'xlsx'
@@ -6,10 +6,14 @@ import { ws_to_rdg } from '@/lib/excel'
 import { useEffect, useState } from 'react'
 import _ from 'lodash'
 
+export const LngLatColName = '坐标点'
+export const LnglatFormat = /^([\d.]+),([\d.]+)$/
+
 export const ReadXlsx = () => {
 	
 	const { ws, skipRows, cols, setWs, setName, setCols, setRows } = useInputSheetBear()
 	const { setMap, setCurrent } = useDisplayColumnBear()
+	const { setFeatures } = useVisualizationBear()
 	
 	useEffect(() => {
 		if (!ws) return
@@ -17,13 +21,27 @@ export const ReadXlsx = () => {
 		const { cols, rows } = ws_to_rdg(ws, skipRows)
 		setCols(cols)
 		setRows(rows)
-		const transposedRows = _.zip(...rows)
-		console.log('parsed sheet data: ', { cols, rows, transposedRows })
-		setMap(_.zipObject(
-				cols.map((col) => col.name) as string[],
-				transposedRows,
-			),
-		)
+		const colNames = cols.map((col) => col.name) as string[]
+		const map = _.zipObject(colNames, _.zip(...rows))
+		setMap(map)
+		
+		const lnglatColIndex = colNames.findIndex((v) => v === LngLatColName)
+		console.log({ cols, rows, map, lnglatColIndex })
+		if (lnglatColIndex < 0) return
+		
+		const features = rows
+			.map((row) => ({
+				type: 'Feature',
+				properties: _.zipObject(colNames, row),
+				geometry: {
+					type: 'Point',
+					coordinates: row[lnglatColIndex].match(LnglatFormat)?.slice(1, 3).map(parseFloat),
+				},
+			}))
+			.filter((feature) => feature.geometry.coordinates)
+		setFeatures(features)
+		console.log({ features })
+		
 	}, [ws, skipRows])
 	
 	useEffect(() => {

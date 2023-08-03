@@ -5,6 +5,7 @@ import { Columns, ColumnType } from '@/config'
 import { RefObject } from 'react'
 import mapboxgl from 'mapbox-gl'
 import { WorkSheet } from 'xlsx'
+import { IFeature, IProperties } from '@/ds'
 
 export const useInputSheetBear = create(combine({
 	ws: null,
@@ -30,6 +31,16 @@ export const useDisplayColumnBear = create(combine({
 	setCurrent: (v: ColumnType) => set(produce((state) => {state.current = v})),
 	setScope: (v: [number, number]) => set(produce((state) => {state.scope = v})),
 	setFilter: (v: [number, number]) => set(produce((state) => {state.filter = v})),
+})))
+
+export const useVisualizationBear = create(combine({
+	features: [],
+	lnglatCol: null,
+	lnglatData: [],
+}, (set) => ({
+	setFeatures: (v: IFeature<IProperties>[]) => set(produce((state) => {state.features = v})),
+	setLnglatCol: (v: string) => set(produce((state) => {state.lnglatCol = v})),
+	setLnglatData: (v: [number, number][]) => set(produce((state) => {state.lnglatData = v})),
 })))
 
 export const useMarkersBear = create(combine({}, (set) => ({
