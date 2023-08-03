@@ -19,6 +19,7 @@ export const Columns: Record<ColumnType, IColumn> = {
 	},
 }
 
+export const CLUSTER_RADIUS = 80
 
 export const INITIAL_VIEW_STATE: IViewState = {
 	// 郑州经纬度
@@ -33,7 +34,6 @@ export const INITIAL_VIEW_STATE: IViewState = {
 	height: 0,
 	
 	padding: { top: 0, left: 0, right: 0, bottom: 0 },
-	
 }
 
 
@@ -54,6 +54,25 @@ export const case4 = ['all', ['>=', ['get', 'value'], segs[2]], ['<', ['get', 'v
 export const case5 = ['>=', ['get', 'value'], segs[3]]
 // colors to use for the categories
 export const colors = ['#0ef906', '#3e122c', '#fd8d3c', '#fc4e2a', '#e31a1c']
+
+export const sourceProps: SourceProps = {
+	id: sourceId,
+	'type': 'geojson',
+	data: fullGeoData,
+	'cluster': true,
+	'clusterRadius': CLUSTER_RADIUS,
+	'clusterProperties': {
+		'cnt': ['+', 1],
+		'sum': ['+', ['get', 'value']],
+		// keep separate counts for each casenitude category in a cluster
+		'case1': ['+', ['case', case1, ['get', 'value'], 0]],
+		'case2': ['+', ['case', case2, ['get', 'value'], 0]],
+		'case3': ['+', ['case', case3, ['get', 'value'], 0]],
+		'case4': ['+', ['case', case4, ['get', 'value'], 0]],
+		'case5': ['+', ['case', case5, ['get', 'value'], 0]],
+	},
+}
+
 export const circleLayerProps: CircleLayer = {
 	'id': `${sourceId}_circle`,
 	'type': 'circle',
@@ -99,21 +118,5 @@ export const textLayerProps: SymbolLayer = {
 		],
 	},
 }
-export const sourceProps: SourceProps = {
-	id: sourceId,
-	'type': 'geojson',
-	data: fullGeoData,
-	'cluster': true,
-	'clusterRadius': 80,
-	'clusterProperties': {
-		'cnt': ['+', 1],
-		'sum': ['+', ['get', 'value']],
-		// keep separate counts for each casenitude category in a cluster
-		'case1': ['+', ['case', case1, ['get', 'value'], 0]],
-		'case2': ['+', ['case', case2, ['get', 'value'], 0]],
-		'case3': ['+', ['case', case3, ['get', 'value'], 0]],
-		'case4': ['+', ['case', case4, ['get', 'value'], 0]],
-		'case5': ['+', ['case', case5, ['get', 'value'], 0]],
-	},
-}
+
 export const MAP_PROJECTION = 'albers' // 最适合查看小区域

@@ -21,7 +21,6 @@ const useSupercluster = <P extends GeoJsonProperties = Supercluster.AnyProps,
 	const superclusterRef = useRef<Supercluster<P, C>>()
 	const pointsRef = useRef<Array<Supercluster.PointFeature<P>>>()
 	const [clusters, setClusters] = useState<Array<Supercluster.ClusterFeature<C> | Supercluster.PointFeature<P>>>([])
-	const zoomInt = Math.round(zoom)
 	
 	useDeepCompareEffectNoCheck(() => {
 		if (
@@ -39,11 +38,12 @@ const useSupercluster = <P extends GeoJsonProperties = Supercluster.AnyProps,
 		}
 		
 		if (bounds) {
-			setClusters(superclusterRef.current?.getClusters(bounds, zoomInt))
+			console.log('retrieving new clusters')
+			setClusters(superclusterRef.current?.getClusters(bounds, zoom))
 		}
 		
 		pointsRef.current = points
-	}, [points, bounds, zoomInt, options])
+	}, [points, bounds, zoom, options])
 	
 	return { clusters, supercluster: superclusterRef.current }
 }

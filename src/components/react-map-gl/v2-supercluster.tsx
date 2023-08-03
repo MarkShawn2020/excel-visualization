@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import ReactMapGL, { Layer, MapRef, Marker, NavigationControl, Source, ViewState } from 'react-map-gl'
-import { circleLayerProps, INITIAL_VIEW_STATE, MAP_PROJECTION, MapStyle, sourceProps, textLayerProps } from '@/config'
+import { circleLayerProps, CLUSTER_RADIUS, INITIAL_VIEW_STATE, MAP_PROJECTION, MapStyle, sourceProps, textLayerProps } from '@/config'
 import { IProperties, IViewState } from '@/ds'
 // import Supercluster from 'supercluster'
 import { BBox, Feature, Point } from 'geojson'
@@ -24,6 +24,7 @@ const reduceFunction = (accumulated, props) => {
 const Map: React.FC = () => {
 	const ref = useRef<MapRef | null>(null)
 	const [bounds, setBounds] = useState<BBox | undefined>(undefined)
+	const [zoom, setZoom] = useState<number>(INITIAL_VIEW_STATE.zoom)
 	const [viewport, setViewport] = useState<IViewState>(INITIAL_VIEW_STATE)
 	
 	const [features, setFeatures] = useState<Supercluster.PointFeature<IProperties>[]>(data.features)
@@ -33,12 +34,13 @@ const Map: React.FC = () => {
 	const { clusters: clusters_ = [], supercluster } = useSupercluster<IProperties>({
 		points: features,
 		bounds,
-		zoom: INITIAL_VIEW_STATE.zoom,
+		zoom,
 		options: {
-			radius: 75,
+			radius: CLUSTER_RADIUS,
 			maxZoom: 20,
 			map: mapFunction,
 			reduce: reduceFunction,
+			log: false,
 		},
 	})
 	const clusters = clusters_.filter((cluster) => cluster.properties.cluster)
@@ -66,9 +68,13 @@ const Map: React.FC = () => {
 			mapStyle={MapStyle.light}
 			onRender={() => {
 				const newBounds = refMap.current?.getBounds().toArray().flat()
+				const newZoom = refMap.current?.getZoom()
 				// console.log({ bounds, newBounds })
 				if (!_.isEqual(newBounds, bounds)) {
 					setBounds(newBounds)
+				}
+				if (newZoom && newZoom !== zoom) {
+					setZoom(newZoom)
 				}
 			}}
 		>

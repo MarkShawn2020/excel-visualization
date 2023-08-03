@@ -44,6 +44,7 @@ export const DynamicMarker = ({ cluster, TOTAL }: {
 				<circle cx={r} cy={r} r={r0 / 4} fill="#ef444455" className={clsx('animate-ping origin-center duration-[3000ms]')}/>
 				<text dominantBaseline="central" transform={`translate(${r}, ${r})`}>
 					{`${sum}(${cnt})`}
+					{/*{cluster.id}*/}
 				</text>
 			</svg>
 		</Marker>

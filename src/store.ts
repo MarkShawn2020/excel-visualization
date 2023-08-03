@@ -20,12 +20,15 @@ export const useStoreBear = create(combine({
 
 export const useMarkersBear = create(combine({}, (set) => ({
 	addMarker: (id: number, val: RefObject<mapboxgl.Marker | null>) => set((state) => {
-		console.log(`addMarker(id=${id})`)
-		return id in state ? state : { ...state, [id]: val }
+		const on = id in state
+		console.log(`addMarker(id=${id}), ${on ? '(passed)' : '✅'}`)
+		// console.log('previous state: ', state)
+		return on ? state : { ...state, [id]: val }
 	}),
 	delMarker: (id: number) => set((state) => {
 		const ref = state[id]
-		console.log(`delMarker(id=${id})`)
+		console.log(`delMarker(id=${id}), ${ref ? '✅' : '(passed)'}`)
+		// console.log('previous state: ', state)
 		if (ref) {
 			(ref?.current as mapboxgl.Marker | null)?.remove()
 			const { [id]: val, ...others } = state
