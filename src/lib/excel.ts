@@ -1,6 +1,6 @@
 import { utils, WorkSheet } from 'xlsx'
 import { Column, textEditor } from 'react-data-grid'
-import { Col, Row } from '@/config'
+import { Col, Row } from '@/ds'
 
 
 /**

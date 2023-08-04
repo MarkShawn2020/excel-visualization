@@ -3,17 +3,20 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { LnglatFormat, MapStyle, Row } from '@/config'
+import { LnglatFormat, MapStyle } from '@/config'
 import DataGrid from 'react-data-grid'
 import { Button } from '@/components/ui/button'
 import { clsx } from 'clsx'
 import { useReadXlsx } from '@/hooks/use-read-xlsx'
 import { useEffect } from 'react'
 import _ from 'lodash'
+import { Switch } from '@/components/ui/switch'
+import { Row } from '@/ds'
 
 export const ControlPanel = () => {
 	const {
 		fileName, sheetName, cols, rows, skipRows, setSkipRows, setRows, map,
+		clusterMode, setClusterMode,
 		posColIndex, setPosIndex, features, setFeatures, valueColIndex, setValueColIndex, mapStyle, setMapStyle,
 	} = useStore()
 	
@@ -87,6 +90,11 @@ export const ControlPanel = () => {
 			<Separator/>
 			<div className={'flex flex-col gap-2'}>
 				<div className={'text-2xl'}>数据操作</div>
+				
+				<div className={'flex items-center gap-2'}>
+					<Label>启用聚类模式</Label>
+					<Switch checked={clusterMode} onCheckedChange={setClusterMode}/>
+				</div>
 				
 				<div className={'flex items-center gap-2'}>
 					<Label>有效坐标个数： {features.length} / {rows.length}</Label>

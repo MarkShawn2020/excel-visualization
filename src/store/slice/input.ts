@@ -1,6 +1,6 @@
 import { WorkSheet } from 'xlsx'
-import { Col, Row } from '@/config'
 import { StoreSlice } from '@/store'
+import { Col, Row } from '@/ds'
 
 export interface InputSlice {
 	ws?: WorkSheet

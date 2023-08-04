@@ -1,8 +1,5 @@
 import { ViewState } from 'react-map-gl'
-
-export interface IColumn {
-	range: number[]
-}
+import { Column } from 'react-data-grid'
 
 
 // Define your view state type
@@ -39,3 +36,6 @@ export type ICluster<P extends IProperties> = IFeature<P> & {
 		sum: number | string | any
 	}
 }
+
+export type Row = any
+export type Col = Column<Row> & { name: string }

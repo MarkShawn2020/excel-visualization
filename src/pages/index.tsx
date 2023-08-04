@@ -1,8 +1,8 @@
 import { Header } from '@/components/header'
 import { useHasMounted } from '@/hooks/use-mount'
 
-import MapVisualization from '@/components/react-map-gl/v2-supercluster'
 import ControlPanel from '@/components/control-panel'
+import Visualization from '@/components/react-map-gl'
 
 export default function Home() {
 	
@@ -19,7 +19,7 @@ export default function Home() {
 							
 							<ControlPanel/>
 							
-							<MapVisualization/>
+							<Visualization/>
 						
 						</main>
 					)

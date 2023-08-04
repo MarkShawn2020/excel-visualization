@@ -1,4 +1,4 @@
-import { DynamicMarker } from '@/components/react-map-gl/marker'
+import { DynamicMarker } from '@/components/react-map-gl/supports/marker'
 import React, { useCallback } from 'react'
 import useSupercluster from '@/hooks/use-supercluster'
 import { CLUSTER_RADIUS, MAX_ZOOM } from '@/config'
@@ -6,7 +6,7 @@ import _ from 'lodash'
 import { useStore } from '@/store'
 import { usePrevious } from '@mantine/hooks'
 
-export const Markers = ({ bounds, zoom, colName }) => {
+export const SuperClusterLayer = ({ bounds, zoom, colName }) => {
 	const { features, delMarker } = useStore()
 	
 	const mapFunction = useCallback((p) => ({ ...p, sum: p[colName], cnt: 1 }), [colName])

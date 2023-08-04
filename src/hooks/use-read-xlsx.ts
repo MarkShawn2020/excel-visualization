@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { ws_to_rdg } from '@/lib/excel'
-import { Row } from '@/config'
 import _ from 'lodash'
 import { toast } from '@/components/ui/use-toast'
 import { read, WorkBook } from 'xlsx'
 import { useStore } from '@/store'
+import { Row } from '@/ds'
 
 export const useReadXlsx = () => {
 	const { ws, skipRows, setWs, setFileName, setSheetName, setCols, setRows, setMap } = useStore()
