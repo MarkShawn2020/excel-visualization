@@ -1,3 +1,11 @@
+## notes
+
+1. 对 rows 的监听没做，所以不要在输入表后，重新修改开头数量
+
+## todo
+
+- [ ] 门店名称 not display
+
 ## 配置
 
 - mapbox

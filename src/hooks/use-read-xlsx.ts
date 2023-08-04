@@ -1,4 +1,4 @@
-import { useControlBear, useInputBear } from '@/store'
+import { useInputBear } from '@/store'
 import { useEffect } from 'react'
 import { ws_to_rdg } from '@/lib/excel'
 import { Row } from '@/config'
@@ -7,8 +7,7 @@ import { toast } from '@/components/ui/use-toast'
 import { read, WorkBook } from 'xlsx'
 
 export const useReadXlsx = () => {
-	const { ws, skipRows, cols, setWs, setFileName, setSheetName, setCols, setRows } = useInputBear()
-	const { setMap, setCurrent } = useControlBear()
+	const { ws, skipRows, setWs, setFileName, setSheetName, setCols, setRows, setMap } = useInputBear()
 	
 	useEffect(() => {
 		if (!ws) return
@@ -19,11 +18,6 @@ export const useReadXlsx = () => {
 		const map = _.zipObject(cols.map((col) => col.name) as string[], _.zip(...rows))
 		setMap(map)
 	}, [ws, skipRows])
-	
-	useEffect(() => {
-		if (!cols?.length) return
-		setCurrent('0')
-	}, [cols])
 	
 	return (filePath: string, blob: Blob) => {
 		if (!filePath) return toast({ description: '未检测到文件', variant: 'destructive' })

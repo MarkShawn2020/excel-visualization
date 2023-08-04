@@ -4,7 +4,7 @@ import { Column } from 'react-data-grid'
 
 
 export const CLUSTER_RADIUS = 80
-export const INITIAL_ZOOM = 7
+export const INITIAL_ZOOM = 7 // max zoom
 export const MAX_ZOOM = 30
 
 

@@ -1,4 +1,4 @@
-import { useControlBear, useInputBear, useUIBear, useVisualizationBear } from '@/store'
+import { useInputBear, useUIBear, useVisualizationBear } from '@/store'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
@@ -12,12 +12,10 @@ import { useEffect } from 'react'
 import _ from 'lodash'
 
 export const ControlPanel = () => {
-	const { fileName, sheetName, cols, rows, skipRows, setSkipRows, setRows } = useInputBear()
-	const { map, current, scope, setCurrent } = useControlBear()
-	const { lnglatKey, setLnglatKey, features, setFeatures } = useVisualizationBear()
+	const { fileName, sheetName, cols, rows, skipRows, setSkipRows, setRows, map } = useInputBear()
+	const { lnglatKey, setLnglatKey, features, setFeatures, valueColIndex, setValueColIndex } = useVisualizationBear()
 	const { mapStyle, setMapStyle } = useUIBear()
 	
-	console.log({ fileName, sheetName, cols, rows, map, current, scope })
 	
 	const selectColTitle = cols?.length ? '选择坐标列' : '当前没有可选列'
 	const readXlsx = useReadXlsx()
@@ -40,6 +38,9 @@ export const ControlPanel = () => {
 		setFeatures(features)
 		console.debug({ features })
 	}, [lnglatKey])
+	
+	console.log({ fileName, sheetName, cols, rows, map, valueColIndex })
+	
 	
 	return (
 		<div id={'control-panel'} className={'w-[360px] whitespace-nowrap shrink-0 h-full p-4 | flex flex-col gap-4'}>
@@ -102,7 +103,7 @@ export const ControlPanel = () => {
 				
 				<div className={'flex items-center gap-2'}>
 					<Label>指定可视化列指标</Label>
-					<Select value={current?.toString()} onValueChange={(v) => setCurrent(parseInt(v))}>
+					<Select value={valueColIndex?.toString()} onValueChange={(v) => setValueColIndex(parseInt(v))}>
 						<SelectTrigger>
 							<SelectValue placeholder={selectColTitle}/>
 						</SelectTrigger>

@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import mapboxgl from 'mapbox-gl'
 import { ICluster, IProperties } from '@/ds'
-import { Marker, Popup, useMap } from 'react-map-gl'
+import { Marker, useMap } from 'react-map-gl'
 
 import { clsx } from 'clsx'
-import { useInputBear, useMarkersBear } from '@/store'
+import { useVisualizationBear } from '@/store'
 import { useHover } from '@mantine/hooks' // mark的话 必须加
 
 
@@ -20,7 +20,7 @@ export const DynamicMarker = ({ cluster, total, zoom }: {
 	const ref = useRef<mapboxgl.Marker | null>(null)
 	const { hovered, ref: refHover } = useHover()
 	
-	const { addMarker } = useMarkersBear()
+	const { addMarker } = useVisualizationBear()
 	
 	useEffect(() => {
 		addMarker(cluster.id, ref)

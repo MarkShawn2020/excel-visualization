@@ -4,7 +4,7 @@ import { produce } from 'immer'
 import { RefObject } from 'react'
 import mapboxgl from 'mapbox-gl'
 import { WorkSheet } from 'xlsx'
-import { IFeature, IProperties } from '@/ds'
+import { IFeature } from '@/ds'
 import { Col, MapStyle, Row } from '@/config'
 
 export interface IInput<R, C> {
@@ -26,6 +26,8 @@ export interface IInput<R, C> {
 	cols: C[]
 	setCols: (v: C[]) => void
 	
+	map: Record<string, any[]>
+	setMap: (v: Record<string, any[]>) => void
 }
 
 export const useInputBear = create<IInput<Row, Col>>(persist(combine({
@@ -42,43 +44,49 @@ export const useInputBear = create<IInput<Row, Col>>(persist(combine({
 	setSkipRows: (v: number) => set(produce((state) => {state.skipRows = v})),
 	setRows: (v: Row[]) => set(produce((state) => {state.rows = v})),
 	setCols: (v: Col[]) => set(produce((state) => {state.cols = v})),
+	
+	setMap: (v) => set(produce((state) => {state.map = v})),
+	
 })), {
 	name: 'input',
 }))
 
-export interface IControl {
-	map: Record<string, any[]>
-	current?: number
-	scope?: [number, number]
-}
-
-export const useControlBear = create<IControl>(persist(combine({
-	map: {},
-	current: undefined, // undefined 才会让placeholder有效
-	scope: undefined,
-}, (set) => ({
-	setMap: (v) => set(produce((state) => {state.map = v})),
-	setCurrent: (v) => set(produce((state) => {state.current = v})),
-	setScope: (v) => set(produce((state) => {state.scope = v})),
-})), {
-	name: 'display',
-}))
 
 export interface IVisualization {
+	valueColIndex?: number, // undefined 才会让placeholder有效
+	setValueColIndex: (v: number | undefined) => void
+	
 	features: IFeature[]
 	setFeatures: (v: IFeature[]) => void
 	
 	lnglatKey?: string // '0', '1', '2', ...
 	setLnglatKey: (v: string) => void
+	
+	markers: Record<number, RefObject<mapboxgl.Marker | null>>
+	addMarker: (id: number, val: RefObject<mapboxgl.Marker | null>) => void
+	delMarker: (id: number) => void
 }
 
-export const useVisualizationBear = create<IVisualization>(persist(combine({
+export const useVisualizationBear = create<IVisualization>(persist((set) => ({
+	valueColIndex: undefined,
 	features: [],
 	lnglatCol: undefined,
-}, (set) => ({
+	markers: {},
+	setValueColIndex: (v) => set(produce((state) => {state.valueColIndex = v})),
 	setFeatures: (v) => set(produce((state) => {state.features = v})),
 	setLnglatKey: (v) => set(produce((state) => {state.lnglatKey = v})),
-})), {
+	
+	addMarker: (id: number, val: RefObject<mapboxgl.Marker | null>) => set(produce((state) => {
+		if (!id in state.markers) state.markers[id] = val
+	})),
+	delMarker: (id: number) => set(produce((state) => {
+		const ref = state.markers[id]
+		if (ref) {
+			(ref?.current as mapboxgl.Marker | null)?.remove()
+			delete state.markers[id]
+		}
+	})),
+}), {
 	name: 'visualization',
 }))
 
