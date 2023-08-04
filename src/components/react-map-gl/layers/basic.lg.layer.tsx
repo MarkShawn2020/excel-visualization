@@ -4,6 +4,7 @@ import { case1, case2, case3, case4, circleLayerProps, colors, symbolLayerProps 
 import { featureCollection } from '@turf/helpers'
 import { IFeature } from '@/ds'
 import _ from 'lodash'
+import { useStore } from '@/store'
 
 export const BasicLgLayer = ({ features, property }: {
 	features: IFeature[]
@@ -14,7 +15,9 @@ export const BasicLgLayer = ({ features, property }: {
 	const values = features.map((feature) => isNumeric ? feature.properties![property] : 1)
 	const max = _.max(values)
 	console.log('[BasicLgLayer] ', { property, isNumeric, max, values })
-	
+	const { colors, colIndex, cols } = useStore()
+	const catName = colIndex.category >= 0 ? cols[colIndex.category].name : null
+	console.log({ cols, colIndex, catName })
 	
 	return (
 		<>
@@ -23,7 +26,13 @@ export const BasicLgLayer = ({ features, property }: {
 				'type': 'circle', // ref: https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#circle
 				'source': MAP_SOURCE_ID,
 				'paint': {
-					'circle-color': colors[4],
+					'circle-color': !catName ? colors[0] : [
+						'case',
+						['==', ['get', catName], 1], colors[1],
+						['==', ['get', catName], 2], colors[2],
+						['==', ['get', catName], 3], colors[3],
+						colors[0],
+					],
 					'circle-opacity': .8,
 					'circle-radius': [
 						'case',

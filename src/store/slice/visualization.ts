@@ -26,6 +26,9 @@ export interface VisualizationSlice {
 	
 	mapStyle: MapStyle
 	setMapStyle: (v: MapStyle) => void
+	
+	colors: string[]
+	setColors: (key: number, v: string) => void
 }
 
 export const createVisualizationSlice_Immer: StoreSlice<VisualizationSlice> = (set) => ({
@@ -54,5 +57,8 @@ export const createVisualizationSlice_Immer: StoreSlice<VisualizationSlice> = (s
 	
 	mapStyle: MapStyle.light,
 	setMapStyle: (v) => set((state) => {state.mapStyle = v}),
+	
+	colors: ['#fca5a5', '#ef4444', '#b91c1c', '#7f1d1d'],
+	setColors: (key, v) => set((state) => {state.colors[key] = v}),
 })
 

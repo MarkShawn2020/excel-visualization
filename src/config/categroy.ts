@@ -1,7 +1,7 @@
 // filters for classifying sourceIds into five categories based on casenitude
 import { CircleLayer, SymbolLayer } from 'mapbox-gl'
 import { SourceProps } from 'react-map-gl'
-import { CLUSTER_RADIUS, MAP_SOURCE_ID } from '@/config'
+import { CLUSTER_RADIUS, MAP_SOURCE_ID } from '@/config/index'
 
 const segs = [520, 540, 560, 580, 600]
 export const case1 = ['<', ['get', 'value'], segs[0]]

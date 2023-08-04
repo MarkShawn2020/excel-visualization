@@ -17,7 +17,7 @@ import { IconBoxMultiple1, IconBoxMultiple2, IconBoxMultiple3 } from '@tabler/ic
 export const ControlPanel = () => {
 	const {
 		fileName, sheetName, cols, rows, skipRows, setSkipRows, setRows, map,
-		clusterMode, setClusterMode, mapStyle, setMapStyle, colIndex, setColIndex,
+		clusterMode, setClusterMode, mapStyle, setMapStyle, colIndex, setColIndex, colors, setColors,
 	} = useStore()
 	
 	const selectColTitle = cols?.length ? '选择坐标列' : '当前没有可选列'
@@ -127,7 +127,6 @@ export const ControlPanel = () => {
 			<div className={'flex flex-col gap-2'}>
 				<div className={'text-2xl inline-flex items-center gap-2'}><IconBoxMultiple3 className={'text-pink-500'}/>UI</div>
 				
-				
 				<div className={'flex items-center gap-2'}>
 					<Label>地图风格</Label>
 					<Select value={mapStyle} onValueChange={setMapStyle}>
@@ -139,6 +138,15 @@ export const ControlPanel = () => {
 								.map(([k, v]) => <SelectItem key={k} value={v}>{k}</SelectItem>)}
 						</SelectContent>
 					</Select>
+				</div>
+				
+				<div className={'flex items-center gap-2'}>
+					<Label>色盘</Label>
+					{colors.map((color, index) => (
+						<Input type={'color'} value={color} key={index} className={'p-0'} onChange={(event) => {
+							setColors(index, event.currentTarget.value)
+						}}/>
+					))}
 				</div>
 			</div>
 		
