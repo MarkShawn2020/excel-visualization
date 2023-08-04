@@ -1,5 +1,5 @@
 import { DynamicMarker } from '@/components/react-map-gl/marker'
-import React from 'react'
+import React, { useCallback } from 'react'
 import useSupercluster from '@/hooks/use-supercluster'
 import { CLUSTER_RADIUS, MAX_ZOOM } from '@/config'
 import _ from 'lodash'
@@ -10,11 +10,11 @@ export const Markers = ({ bounds, zoom, colName }) => {
 	const { features } = useVisualizationBear()
 	const { delMarker } = useMarkersBear()
 	
-	const mapFunction = (p) => ({ ...p, sum: p[colName], cnt: 1 })
-	const reduceFunction = (accumulated, props) => {
+	const mapFunction = useCallback((p) => ({ ...p, sum: p[colName], cnt: 1 }), [colName])
+	const reduceFunction = useCallback((accumulated, props) => {
 		accumulated.sum += props.sum
 		accumulated.cnt += props.cnt
-	}
+	}, [])
 	
 	const { clusters: clusters_ = [], supercluster } = useSupercluster({
 		points: features,
