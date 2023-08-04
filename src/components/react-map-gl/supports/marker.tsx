@@ -5,7 +5,8 @@ import { Marker, useMap } from 'react-map-gl'
 
 import { clsx } from 'clsx'
 import { useStore } from '@/store'
-import { useHover } from '@mantine/hooks' // mark的话 必须加
+import { useHover } from '@mantine/hooks'
+import { HoverInfo } from '@/components/react-map-gl/supports/hover' // mark的话 必须加
 
 
 export const DynamicMarker = ({ cluster, total, zoom }: {
@@ -75,15 +76,7 @@ export const DynamicMarker = ({ cluster, total, zoom }: {
 			
 			</Marker>
 			
-			{hovered && (
-				<div className={'absolute inset-0 w-60 h-fit  | bg-card text-accent-foreground flex flex-col gap-1'}>
-					{Object.entries(properties).map(([key, val]) => (
-						<div key={key}>
-							{key}: {val}
-						</div>
-					))}
-				</div>
-			)}
+			{hovered && <HoverInfo {...cluster}/>}
 		</>
 	)
 }

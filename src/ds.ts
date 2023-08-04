@@ -1,7 +1,8 @@
 import { ViewState } from 'react-map-gl'
 import { Column } from 'react-data-grid'
-import { Feature, Point, Position } from '@turf/helpers'
+import { Feature as TurfFeature, Point as TurfPoint } from '@turf/helpers'
 import Supercluster from 'supercluster'
+import { Feature, Point } from 'geojson'
 
 
 // Define your view state type
@@ -16,7 +17,8 @@ export interface IProperties {
 
 
 export interface IFeature
-	extends Feature<Point, IProperties>,
+	extends TurfFeature<TurfPoint, IProperties>,
+		Feature<Point>,
 		Supercluster.PointFeature<IProperties> {}
 
 export type ICluster<P extends IProperties> = IFeature & {
