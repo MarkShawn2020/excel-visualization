@@ -13,7 +13,7 @@ import _ from 'lodash'
 
 export const ControlPanel = () => {
 	const { fileName, sheetName, cols, rows, skipRows, setSkipRows, setRows, map } = useInputBear()
-	const { lnglatKey, setLnglatKey, features, setFeatures, valueColIndex, setValueColIndex } = useVisualizationBear()
+	const { posColIndex, setPosIndex, features, setFeatures, valueColIndex, setValueColIndex } = useVisualizationBear()
 	const { mapStyle, setMapStyle } = useUIBear()
 	
 	
@@ -21,9 +21,7 @@ export const ControlPanel = () => {
 	const readXlsx = useReadXlsx()
 	
 	useEffect(() => {
-		const colIndex = parseInt(lnglatKey ?? '')
-		console.log({ colIndex })
-		if (colIndex < 0) return
+		if (posColIndex === undefined) return
 		
 		const features = rows
 			.map((row) => ({
@@ -31,13 +29,13 @@ export const ControlPanel = () => {
 				properties: _.zipObject(cols.map((v) => v.name), row),
 				geometry: {
 					type: 'Point',
-					coordinates: String(row[colIndex]).match(LnglatFormat)?.slice(1, 3).map(parseFloat),
+					coordinates: String(row[posColIndex]).match(LnglatFormat)?.slice(1, 3).map(parseFloat),
 				},
 			}))
 			.filter((feature) => feature.geometry.coordinates)
 		setFeatures(features)
 		console.debug({ features })
-	}, [lnglatKey])
+	}, [posColIndex])
 	
 	console.log({ fileName, sheetName, cols, rows, map, valueColIndex })
 	
@@ -91,7 +89,7 @@ export const ControlPanel = () => {
 				
 				<div className={'flex items-center gap-2'}>
 					<Label>有效坐标个数： {features.length} / {rows.length}</Label>
-					<Select value={lnglatKey} onValueChange={setLnglatKey}>
+					<Select value={posColIndex?.toString()} onValueChange={(v) => setPosIndex(parseInt(v))}>
 						<SelectTrigger>
 							<SelectValue placeholder={selectColTitle}/>
 						</SelectTrigger>

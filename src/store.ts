@@ -53,14 +53,14 @@ export const useInputBear = create<IInput<Row, Col>>(persist(combine({
 
 
 export interface IVisualization {
+	posColIndex?: number // '0', '1', '2', ...
+	setPosIndex: (v: number | undefined) => void
+	
 	valueColIndex?: number, // undefined 才会让placeholder有效
 	setValueColIndex: (v: number | undefined) => void
 	
 	features: IFeature[]
 	setFeatures: (v: IFeature[]) => void
-	
-	lnglatKey?: string // '0', '1', '2', ...
-	setLnglatKey: (v: string) => void
 	
 	markers: Record<number, RefObject<mapboxgl.Marker | null>>
 	addMarker: (id: number, val: RefObject<mapboxgl.Marker | null>) => void
@@ -69,13 +69,15 @@ export interface IVisualization {
 
 export const useVisualizationBear = create<IVisualization>(persist((set) => ({
 	valueColIndex: undefined,
-	features: [],
-	lnglatCol: undefined,
-	markers: {},
 	setValueColIndex: (v) => set(produce((state) => {state.valueColIndex = v})),
-	setFeatures: (v) => set(produce((state) => {state.features = v})),
-	setLnglatKey: (v) => set(produce((state) => {state.lnglatKey = v})),
 	
+	posColIndex: undefined,
+	setPosIndex: (v) => set(produce((state) => {state.posColIndex = v})),
+	
+	features: [],
+	setFeatures: (v) => set(produce((state) => {state.features = v})),
+	
+	markers: {},
 	addMarker: (id: number, val: RefObject<mapboxgl.Marker | null>) => set(produce((state) => {
 		if (!id in state.markers) state.markers[id] = val
 	})),
