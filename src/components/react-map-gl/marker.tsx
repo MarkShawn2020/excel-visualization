@@ -16,7 +16,6 @@ export const DynamicMarker = ({ cluster, total, zoom }: {
 		cnt: number
 	}
 }) => {
-	const isPct = typeof total.sum === 'number'
 	const map = useMap()
 	const ref = useRef<mapboxgl.Marker | null>(null)
 	const { hovered, ref: refHover } = useHover()
@@ -28,6 +27,7 @@ export const DynamicMarker = ({ cluster, total, zoom }: {
 	}, [])
 	
 	const { geometry, properties } = cluster
+	const isPct = typeof properties.sum === 'number' // 不能用 total.sum
 	const [lon, lat] = geometry.coordinates
 	const display = isPct ? [properties.sum.toFixed(1), properties.cnt].join('\n') : properties.cnt.toString()
 	

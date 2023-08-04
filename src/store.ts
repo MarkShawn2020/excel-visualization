@@ -46,31 +46,38 @@ export const useInputBear = create<IInput<Row, Col>>(persist(combine({
 	name: 'input',
 }))
 
-export const useControlBear = create(persist(combine({
+export interface IControl {
+	map: Record<string, any[]>
+	current?: number
+	scope?: [number, number]
+}
+
+export const useControlBear = create<IControl>(persist(combine({
 	map: {},
 	current: undefined, // undefined 才会让placeholder有效
 	scope: undefined,
 }, (set) => ({
-	setMap: (v: Record<string, any[]>) => set(produce((state) => {state.map = v})),
-	setCurrent: (v: string) => set(produce((state) => {state.current = v})),
-	setScope: (v: [number, number]) => set(produce((state) => {state.scope = v})),
+	setMap: (v) => set(produce((state) => {state.map = v})),
+	setCurrent: (v) => set(produce((state) => {state.current = v})),
+	setScope: (v) => set(produce((state) => {state.scope = v})),
 })), {
 	name: 'display',
 }))
 
 export interface IVisualization {
 	features: IFeature[]
-	lnglatCol?: string
 	setFeatures: (v: IFeature[]) => void
-	setLnglatCol: (v: string) => void
+	
+	lnglatKey?: string // '0', '1', '2', ...
+	setLnglatKey: (v: string) => void
 }
 
 export const useVisualizationBear = create<IVisualization>(persist(combine({
 	features: [],
 	lnglatCol: undefined,
 }, (set) => ({
-	setFeatures: (v: IFeature<IProperties>[]) => set(produce((state) => {state.features = v})),
-	setLnglatCol: (v: string) => set(produce((state) => {state.lnglatCol = v})),
+	setFeatures: (v) => set(produce((state) => {state.features = v})),
+	setLnglatKey: (v) => set(produce((state) => {state.lnglatKey = v})),
 })), {
 	name: 'visualization',
 }))
