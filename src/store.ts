@@ -5,13 +5,33 @@ import { RefObject } from 'react'
 import mapboxgl from 'mapbox-gl'
 import { WorkSheet } from 'xlsx'
 import { IFeature, IProperties } from '@/ds'
-import { ColumnType } from '@/__archive__/config'
-import { MapStyle } from '@/config'
+import { Col, MapStyle, Row } from '@/config'
 
-export const useInputBear = create(persist(combine({
+export interface IInput<R, C> {
+	ws?: WorkSheet
+	setWs: (ws: WorkSheet) => void
+	
+	fileName?: string
+	setFileName: (v: string) => void
+	
+	sheetName?: string
+	setSheetName: (v: string) => void
+	
+	skipRows: number
+	setSkipRows: (v: number) => void
+	
+	rows: R[]
+	setRows: (v: C[]) => void
+	
+	cols: C[]
+	setCols: (v: C[]) => void
+	
+}
+
+export const useInputBear = create<IInput<Row, Col>>(persist(combine({
 	ws: undefined,
-	fileName: '',
-	sheetName: '',
+	fileName: undefined,
+	sheetName: undefined,
 	skipRows: 0,
 	cols: [],
 	rows: [],
@@ -20,8 +40,8 @@ export const useInputBear = create(persist(combine({
 	setFileName: (v: string) => set(produce((state) => {state.fileName = v})),
 	setSheetName: (v: string) => set(produce((state) => {state.sheetName = v})),
 	setSkipRows: (v: number) => set(produce((state) => {state.skipRows = v})),
-	setCols: (v: any[]) => set(produce((state) => {state.cols = v})),
-	setRows: (v: any[]) => set(produce((state) => {state.rows = v})),
+	setRows: (v: Row[]) => set(produce((state) => {state.rows = v})),
+	setCols: (v: Col[]) => set(produce((state) => {state.cols = v})),
 })), {
 	name: 'input',
 }))
@@ -32,13 +52,20 @@ export const useControlBear = create(persist(combine({
 	scope: undefined,
 }, (set) => ({
 	setMap: (v: Record<string, any[]>) => set(produce((state) => {state.map = v})),
-	setCurrent: (v: ColumnType) => set(produce((state) => {state.current = v})),
+	setCurrent: (v: string) => set(produce((state) => {state.current = v})),
 	setScope: (v: [number, number]) => set(produce((state) => {state.scope = v})),
 })), {
 	name: 'display',
 }))
 
-export const useVisualizationBear = create(persist(combine({
+export interface IVisualization {
+	features: IFeature[]
+	lnglatCol?: string
+	setFeatures: (v: IFeature[]) => void
+	setLnglatCol: (v: string) => void
+}
+
+export const useVisualizationBear = create<IVisualization>(persist(combine({
 	features: [],
 	lnglatCol: undefined,
 }, (set) => ({

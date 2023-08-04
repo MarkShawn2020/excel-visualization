@@ -50,28 +50,28 @@ export const DynamicMarker = ({ cluster, total, zoom }: {
 					duration: 1000,
 				})
 			}}>
-				<svg width={w} height={w} viewBox={`0 0 ${w} ${w}`} textAnchor="middle" ref={refHover}
-					// className={'bg-cyan-800'}
-				>
-					{/*{*/}
-					{/*	_.range(5).map((i) =>*/}
-					{/*		<CreateDonutSegment*/}
-					{/*			key={i}*/}
-					{/*			start={offsets[i] / total}*/}
-					{/*			end={(offsets[i] + counts[i]) / total}*/}
-					{/*			r={r}*/}
-					{/*			r0={r0}*/}
-					{/*		/>,*/}
-					{/*	)*/}
-					{/*}*/}
-					<circle cx={r} cy={r} r={r / 2} fill="#ef4444"/>
-					<circle cx={r} cy={r} r={r / 2} fill="#ef444455" className={clsx('animate-ping origin-center anim-duration-[3000ms]')}/>
-					<text dominantBaseline="central" transform={`translate(${r}, ${r})`} fill={'white'} fontSize={14}>
-						{display.split('\n').map((line, index) => (
-							<tspan key={index} x={0} y={`${.9 * (index)}em`}>{line}</tspan>
-						))}
-					</text>
-				</svg>
+				<div ref={refHover}>
+					<svg width={w} height={w} viewBox={`0 0 ${w} ${w}`} textAnchor="middle">
+						{/*{*/}
+						{/*	_.range(5).map((i) =>*/}
+						{/*		<CreateDonutSegment*/}
+						{/*			key={i}*/}
+						{/*			start={offsets[i] / total}*/}
+						{/*			end={(offsets[i] + counts[i]) / total}*/}
+						{/*			r={r}*/}
+						{/*			r0={r0}*/}
+						{/*		/>,*/}
+						{/*	)*/}
+						{/*}*/}
+						<circle cx={r} cy={r} r={r / 2} fill="#ef4444"/>
+						<circle cx={r} cy={r} r={r / 2} fill="#ef444455" className={clsx('animate-ping origin-center anim-duration-[3000ms]')}/>
+						<text dominantBaseline="central" transform={`translate(${r}, ${r})`} fill={'white'} fontSize={14}>
+							{display.split('\n').map((line, index) => (
+								<tspan key={index} x={0} y={`${.9 * (index)}em`}>{line}</tspan>
+							))}
+						</text>
+					</svg>
+				</div>
 			
 			</Marker>
 			
@@ -89,7 +89,13 @@ export const DynamicMarker = ({ cluster, total, zoom }: {
 }
 
 export const CreateDonutSegment = (
-	{ start, end, r, r0, color },
+	{ start, end, r, r0, color }: {
+		start: number
+		end: number
+		r: number
+		r0: number
+		color: string
+	},
 ) => {
 	if (end - start === 1) end -= 0.00001
 	const a0 = 2 * Math.PI * (start - 0.25)

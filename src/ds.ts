@@ -23,7 +23,7 @@ export interface IFeature<P extends IProperties = {}> {
 	properties: P
 	geometry: {
 		type: string;
-		coordinates: number[];
+		coordinates: [number, number];
 	};
 }
 
@@ -35,11 +35,6 @@ export type ICluster<P extends IProperties> = IFeature<P> & {
 		pointer_count: number
 		point_count_abbreviated: number | string
 		
-		case1: number
-		case2: number
-		case3: number
-		case4: number
-		case5: number
 		cnt: number
 		sum: number | string | any
 	}

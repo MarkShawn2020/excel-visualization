@@ -1,14 +1,14 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import ReactMapGL, { MapRef, NavigationControl } from 'react-map-gl'
 import { CLUSTER_RADIUS, INITIAL_VIEW_STATE, LnglatFormat, MAP_PROJECTION, MAX_ZOOM } from '@/config'
-import { IProperties } from '@/ds'
+import { IFeature, IProperties } from '@/ds'
 import { BBox } from 'geojson'
-import { LanguageControl } from '@/components/deck.gl/controls/language.control'
 import useSupercluster from '@/hooks/use-supercluster'
 import { DynamicMarker } from '@/components/react-map-gl/marker'
 import _ from 'lodash'
 import { usePrevious } from '@radix-ui/react-use-previous'
-import { useControlBear, useInputBear, useMarkersBear, useUIBear, useVisualizationBear } from '@/store' // mark的话 必须加
+import { useControlBear, useInputBear, useMarkersBear, useUIBear, useVisualizationBear } from '@/store'
+import { LanguageControl } from '@/components/react-map-gl/controls' // mark的话 必须加
 
 const Map: React.FC = () => {
 	const { cols, rows } = useInputBear()
@@ -51,7 +51,7 @@ const Map: React.FC = () => {
 	}, [])
 	
 	
-	const { clusters: clusters_ = [], supercluster } = useSupercluster<IProperties>({
+	const { clusters: clusters_ = [], supercluster } = useSupercluster<IFeature<IProperties>>({
 		points: features,
 		bounds,
 		zoom,

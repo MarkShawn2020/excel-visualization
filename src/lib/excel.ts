@@ -1,20 +1,19 @@
 import { utils, WorkSheet } from 'xlsx'
 import { Column, textEditor } from 'react-data-grid'
+import { Col } from '@/config'
 
-export type Row = unknown[];
-export type AOAColumn = Column<Row>;
-export type RowCol = { rows: Row[]; cols: AOAColumn[]; };
 
 /**
  * 第一行是列
  *
  * @param {WorkSheet} ws
  * @param {number} skipRows
- * @return {RowCol}
  */
-export function ws_to_rdg<Row extends any[] = []>(ws: WorkSheet, skipRows: number = 1): RowCol {
+export function ws_to_rdg<Row>(ws: WorkSheet, skipRows: number = 1): { rows: any[][], cols: Col[] } {
 	/* create an array of arrays */
-	const data = utils.sheet_to_json<Row>(ws, { header: 1 }).slice(skipRows)
+	const data = utils.sheet_to_json(ws, {
+		header: 1, // 1 表示生成矩阵数据
+	}).slice(skipRows) as any[][]
 	const [row, ...rows] = data
 	console.debug('parsed rows: ', data)
 	
@@ -24,7 +23,7 @@ export function ws_to_rdg<Row extends any[] = []>(ws: WorkSheet, skipRows: numbe
 	// ws['!ref'] = utils.encode_range(range) // todo: 这里不支持 modify
 	console.debug('parsed range: ', range)
 	
-	const cols = Array.from({ length: range.e.c + 1 }, (_, i) => {
+	const cols: Col[] = Array.from({ length: range.e.c + 1 }, (_, i) => {
 		return {
 			key: String(i), // RDG will access row["0"], row["1"], etc
 			name: row[i], // utils.encode_col(i), // the column labels will be A, B, etc

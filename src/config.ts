@@ -1,5 +1,6 @@
 import { zhenzhou } from '@/const'
 import { IViewState } from '@/ds'
+import { Column } from 'react-data-grid'
 
 
 export const CLUSTER_RADIUS = 80
@@ -34,3 +35,6 @@ export const sourceId = 'shit'
 export const MAP_PROJECTION = 'albers' // 最适合查看小区域
 
 export const LnglatFormat = /^([\d.]+),([\d.]+)$/
+
+export type Row = any
+export type Col = Column<Row> & { name: string }

@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input'
 import { ReadXlsx } from '@/components/xlsx'
 import { Separator } from '@/components/ui/separator'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { MapStyle } from '@/config'
+import { MapStyle, Row } from '@/config'
 import DataGrid from 'react-data-grid'
 import { Button } from '@/components/ui/button'
 
@@ -16,7 +16,6 @@ export const ControlPanel = () => {
 	
 	console.debug({ fileName, sheetName, cols, rows, map, current, scope })
 	
-	
 	const selectColTitle = cols?.length ? '选择坐标列' : '当前没有可选列'
 	
 	return (
@@ -26,7 +25,7 @@ export const ControlPanel = () => {
 				<div className={'text-2xl'}>数据输入</div>
 				<div className="flex items-center gap-2">
 					<Label htmlFor="xlsx">跳过开头空行数</Label>
-					<Input type={'number'} defaultValue={skipRows} onBlur={(event) => setSkipRows(event.currentTarget.value)}/>
+					<Input type={'number'} defaultValue={skipRows} onBlur={(event) => setSkipRows(parseInt(event.currentTarget.value))}/>
 				</div>
 				<Button className="flex items-center gap-2" variant={'outline'}>
 					<Label htmlFor="xlsx">上传 Excel 表格</Label>
@@ -40,7 +39,7 @@ export const ControlPanel = () => {
 					</>
 				)}
 				
-				{!!cols?.length && <DataGrid className={'w-full'} columns={cols} rows={rows} onRowsChange={setRows}/>}
+				{!!cols?.length && <DataGrid<Row> className={'w-full'} columns={cols} rows={rows} onRowsChange={setRows}/>}
 			</div>
 			
 			<Separator/>
@@ -54,9 +53,7 @@ export const ControlPanel = () => {
 							<SelectValue placeholder={selectColTitle}/>
 						</SelectTrigger>
 						<SelectContent>
-							{cols
-								.map((col) => col.name)
-								.map((v) => <SelectItem key={v} value={v}>{v}</SelectItem>)}
+							{cols.map((v) => <SelectItem key={v.key} value={v.key}>{v.name}</SelectItem>)}
 						</SelectContent>
 					</Select>
 				</div>
@@ -69,7 +66,7 @@ export const ControlPanel = () => {
 						</SelectTrigger>
 						<SelectContent>
 							{cols
-								.map((col) => col.name)
+								.map((col) => col.key)
 								.map((v) => <SelectItem key={v} value={v}>{v}</SelectItem>)}
 						</SelectContent>
 					</Select>

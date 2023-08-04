@@ -5,7 +5,7 @@ import { read, WorkBook } from 'xlsx'
 import { ws_to_rdg } from '@/lib/excel'
 import { useEffect } from 'react'
 import _ from 'lodash'
-import { LnglatFormat } from '@/config'
+import { LnglatFormat, Row } from '@/config'
 
 export const ReadXlsx = () => {
 	
@@ -15,7 +15,7 @@ export const ReadXlsx = () => {
 	useEffect(() => {
 		if (!ws) return
 		
-		const { cols, rows } = ws_to_rdg(ws, skipRows)
+		const { cols, rows } = ws_to_rdg<Row>(ws, skipRows)
 		setCols(cols)
 		setRows(rows)
 		const map = _.zipObject(cols.map((col) => col.name) as string[], _.zip(...rows))
