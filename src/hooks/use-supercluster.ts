@@ -12,12 +12,13 @@ export interface UseSuperclusterArgument<P, C> {
 }
 
 const useSupercluster = <P extends GeoJsonProperties = Supercluster.AnyProps,
-	C extends GeoJsonProperties = Supercluster.AnyProps>({
-		                                                     points,
-		                                                     bounds,
-		                                                     zoom,
-		                                                     options,
-	                                                     }: UseSuperclusterArgument<P, C>) => {
+	C extends GeoJsonProperties = Supercluster.AnyProps>(
+	{
+		points,
+		bounds,
+		zoom,
+		options,
+	}: UseSuperclusterArgument<P, C>) => {
 	const superclusterRef = useRef<Supercluster<P, C>>()
 	const pointsRef = useRef<Array<Supercluster.PointFeature<P>>>()
 	const [clusters, setClusters] = useState<Array<Supercluster.ClusterFeature<C> | Supercluster.PointFeature<P>>>([])

@@ -5,18 +5,28 @@ import { CLUSTER_RADIUS, MAX_ZOOM } from '@/config'
 import _ from 'lodash'
 import { useStore } from '@/store'
 import { usePrevious } from '@mantine/hooks'
+import { useFeatures } from '@/hooks/use-features'
+import { IProperties } from '@/ds'
+import { BBox } from 'geojson'
+import Supercluster from 'supercluster'
 
-export const SuperClusterLayer = ({ bounds, zoom, colName }) => {
-	const { features, delMarker } = useStore()
+export const ClusterSuperLayer = ({ bounds, zoom, property }: {
+	bounds: BBox | undefined
+	zoom: number
+	property: string
+}) => {
+	const { delMarker } = useStore()
+	const features = useFeatures()
 	
-	const mapFunction = useCallback((p) => ({ ...p, sum: p[colName], cnt: 1 }), [colName])
+	const mapFunction = useCallback((p) => ({ ...p, sum: p[property], cnt: 1 }), [property])
 	const reduceFunction = useCallback((accumulated, props) => {
 		accumulated.sum += props.sum
 		accumulated.cnt += props.cnt
 	}, [])
 	
+	const points = features as Supercluster.PointFeature<IProperties>[] // todo: 可以不 as 吗
 	const { clusters: clusters_ = [], supercluster } = useSupercluster({
-		points: features,
+		points,
 		bounds,
 		zoom,
 		options: {
@@ -32,7 +42,7 @@ export const SuperClusterLayer = ({ bounds, zoom, colName }) => {
 	const clusters = clusters_
 		.map((cluster) => _.merge({}, cluster, {
 			properties: {
-				sum: cluster.properties.sum ?? cluster.properties[colName],
+				sum: cluster.properties.sum ?? cluster.properties[property],
 				cnt: cluster.properties.cnt ?? 1,
 			},
 		}))

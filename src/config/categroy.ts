@@ -1,7 +1,7 @@
 // filters for classifying sourceIds into five categories based on casenitude
 import { CircleLayer, SymbolLayer } from 'mapbox-gl'
 import { SourceProps } from 'react-map-gl'
-import { CLUSTER_RADIUS, SOURCE_LAYER_ID } from '@/config'
+import { CLUSTER_RADIUS, MAP_SOURCE_ID } from '@/config'
 
 const segs = [520, 540, 560, 580, 600]
 export const case1 = ['<', ['get', 'value'], segs[0]]
@@ -12,9 +12,9 @@ export const case5 = ['>=', ['get', 'value'], segs[3]]
 export const colors = ['#0ef906', '#3e122c', '#fd8d3c', '#fc4e2a', '#e31a1c']
 
 export const circleLayerProps: CircleLayer = {
-	'id': `${SOURCE_LAYER_ID}_circle`,
+	'id': `${MAP_SOURCE_ID}_circle`,
 	'type': 'circle',
-	'source': SOURCE_LAYER_ID,
+	'source': MAP_SOURCE_ID,
 	'filter': ['!=', 'cluster', true],
 	'paint': {
 		'circle-color': [
@@ -34,9 +34,9 @@ export const circleLayerProps: CircleLayer = {
 	},
 }
 export const symbolLayerProps: SymbolLayer = {
-	'id': `${SOURCE_LAYER_ID}_label`,
+	'id': `${MAP_SOURCE_ID}_label`,
 	'type': 'symbol',
-	'source': SOURCE_LAYER_ID,
+	'source': MAP_SOURCE_ID,
 	'filter': ['!=', 'cluster', true],
 	'layout': {
 		'text-field': [

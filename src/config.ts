@@ -29,9 +29,18 @@ export enum MapStyle {
 	light = 'mapbox://styles/mapbox/light-v11'
 }
 
-export const SOURCE_LAYER_ID = 'shit'
+export const MAP_SOURCE_ID = 'shit'
+
+export enum MAP_LAYERS {
+	basic_sm_circle = `${MAP_SOURCE_ID}_sm`,
+	basic_lg_circle = `${MAP_SOURCE_ID}_circle_lg`,
+	basic_lg_label = `${MAP_SOURCE_ID}_text_lg`,
+}
 
 export const MAP_PROJECTION = 'albers' // 最适合查看小区域
+export const MAP_MIN_SM_CIRCLE_SIZE = 3
+export const MAP_MIN_LG_CIRCLE_SIZE = 14
+export const MAP_MAX_LG_CIRCLE_SIZE = 28
 
 export const LnglatFormat = /^([\d.]+),([\d.]+)$/
 

@@ -3,46 +3,27 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { LnglatFormat, MapStyle } from '@/config'
+import { MapStyle } from '@/config'
 import DataGrid from 'react-data-grid'
 import { Button } from '@/components/ui/button'
 import { clsx } from 'clsx'
 import { useReadXlsx } from '@/hooks/use-read-xlsx'
-import { useEffect } from 'react'
-import _ from 'lodash'
 import { Switch } from '@/components/ui/switch'
 import { Row } from '@/ds'
+import { useFeatures } from '@/hooks/use-features'
+
 
 export const ControlPanel = () => {
 	const {
 		fileName, sheetName, cols, rows, skipRows, setSkipRows, setRows, map,
-		clusterMode, setClusterMode,
-		posColIndex, setPosIndex, features, setFeatures, valueColIndex, setValueColIndex, mapStyle, setMapStyle,
+		clusterMode, setClusterMode, mapStyle, setMapStyle, colIndex, setColIndex,
 	} = useStore()
-	
 	
 	const selectColTitle = cols?.length ? '选择坐标列' : '当前没有可选列'
 	const readXlsx = useReadXlsx()
+	const features = useFeatures()
 	
-	useEffect(() => {
-		if (posColIndex === undefined) return
-		
-		const features = rows
-			.map((row) => ({
-				type: 'Feature',
-				properties: _.zipObject(cols.map((v) => v.name), row),
-				geometry: {
-					type: 'Point',
-					coordinates: String(row[posColIndex]).match(LnglatFormat)?.slice(1, 3).map(parseFloat),
-				},
-			}))
-			.filter((feature) => feature.geometry.coordinates)
-		setFeatures(features)
-		console.debug({ features })
-	}, [posColIndex])
-	
-	console.log({ fileName, sheetName, cols, rows, map, valueColIndex })
-	
+	console.log({ fileName, sheetName, cols, rows, map })
 	
 	return (
 		<div id={'control-panel'} className={'w-[360px] whitespace-nowrap shrink-0 h-full p-4 | flex flex-col gap-4'}>
@@ -98,7 +79,7 @@ export const ControlPanel = () => {
 				
 				<div className={'flex items-center gap-2'}>
 					<Label>有效坐标个数： {features.length} / {rows.length}</Label>
-					<Select value={posColIndex?.toString()} onValueChange={(v) => setPosIndex(parseInt(v))}>
+					<Select value={colIndex.lnglat?.toString()} onValueChange={(v) => setColIndex('lnglat', parseInt(v))}>
 						<SelectTrigger>
 							<SelectValue placeholder={selectColTitle}/>
 						</SelectTrigger>
@@ -110,7 +91,7 @@ export const ControlPanel = () => {
 				
 				<div className={'flex items-center gap-2'}>
 					<Label>指定可视化列指标</Label>
-					<Select value={valueColIndex?.toString()} onValueChange={(v) => setValueColIndex(parseInt(v))}>
+					<Select value={colIndex.measure?.toString()} onValueChange={(v) => setColIndex('measure', parseInt(v))}>
 						<SelectTrigger>
 							<SelectValue placeholder={selectColTitle}/>
 						</SelectTrigger>

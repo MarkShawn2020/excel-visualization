@@ -1,5 +1,7 @@
 import { ViewState } from 'react-map-gl'
 import { Column } from 'react-data-grid'
+import { Feature, Point, Position } from '@turf/helpers'
+import Supercluster from 'supercluster'
 
 
 // Define your view state type
@@ -10,21 +12,14 @@ export interface IViewState
 }
 
 export interface IProperties {
-	value: number;
 }
 
 
-// Define your point data type
-export interface IFeature<P extends IProperties = {}> {
-	type: string;
-	properties: P
-	geometry: {
-		type: string;
-		coordinates: [number, number];
-	};
-}
+export interface IFeature
+	extends Feature<Point, IProperties>,
+		Supercluster.PointFeature<IProperties> {}
 
-export type ICluster<P extends IProperties> = IFeature<P> & {
+export type ICluster<P extends IProperties> = IFeature & {
 	id: number
 	properties: {
 		cluster: true
