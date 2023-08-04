@@ -3,11 +3,11 @@ import React, { useCallback } from 'react'
 import useSupercluster from '@/hooks/use-supercluster'
 import { CLUSTER_RADIUS, MAX_ZOOM } from '@/config'
 import _ from 'lodash'
-import { useVisualizationBear } from '@/store'
+import { useStore } from '@/store'
 import { usePrevious } from '@mantine/hooks'
 
 export const Markers = ({ bounds, zoom, colName }) => {
-	const { features, delMarker } = useVisualizationBear()
+	const { features, delMarker } = useStore()
 	
 	const mapFunction = useCallback((p) => ({ ...p, sum: p[colName], cnt: 1 }), [colName])
 	const reduceFunction = useCallback((accumulated, props) => {

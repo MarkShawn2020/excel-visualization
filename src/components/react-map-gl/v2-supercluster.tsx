@@ -3,7 +3,7 @@ import ReactMapGL, { MapRef, NavigationControl } from 'react-map-gl'
 import { INITIAL_VIEW_STATE, INITIAL_ZOOM, MAP_PROJECTION } from '@/config'
 import { BBox } from 'geojson'
 import _ from 'lodash'
-import { useInputBear, useUIBear, useVisualizationBear } from '@/store'
+import { useStore } from '@/store'
 import { LanguageControl } from '@/components/react-map-gl/controls'
 import { Markers } from '@/components/react-map-gl/markers' // mark的话 必须加
 
@@ -13,9 +13,7 @@ const Map: React.FC = () => {
 	const [bounds, setBounds] = useState<BBox | undefined>(undefined)
 	const [zoom, setZoom] = useState<number>(INITIAL_VIEW_STATE.zoom)
 	
-	const { cols } = useInputBear()
-	const { mapStyle } = useUIBear()
-	const { valueColIndex } = useVisualizationBear()
+	const { valueColIndex, mapStyle, cols } = useStore()
 	
 	
 	return (

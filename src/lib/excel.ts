@@ -1,6 +1,6 @@
 import { utils, WorkSheet } from 'xlsx'
 import { Column, textEditor } from 'react-data-grid'
-import { Col } from '@/config'
+import { Col, Row } from '@/config'
 
 
 /**
@@ -9,7 +9,7 @@ import { Col } from '@/config'
  * @param {WorkSheet} ws
  * @param {number} skipRows
  */
-export function ws_to_rdg<Row>(ws: WorkSheet, skipRows: number = 1): { rows: any[][], cols: Col[] } {
+export function ws_to_rdg(ws: WorkSheet, skipRows: number = 1): { rows: Row[], cols: Col[] } {
 	/* create an array of arrays */
 	const data = utils.sheet_to_json(ws, {
 		header: 1, // 1 表示生成矩阵数据

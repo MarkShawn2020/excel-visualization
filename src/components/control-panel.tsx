@@ -1,4 +1,4 @@
-import { useInputBear, useUIBear, useVisualizationBear } from '@/store'
+import { useStore } from '@/store'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
@@ -12,9 +12,10 @@ import { useEffect } from 'react'
 import _ from 'lodash'
 
 export const ControlPanel = () => {
-	const { fileName, sheetName, cols, rows, skipRows, setSkipRows, setRows, map } = useInputBear()
-	const { posColIndex, setPosIndex, features, setFeatures, valueColIndex, setValueColIndex } = useVisualizationBear()
-	const { mapStyle, setMapStyle } = useUIBear()
+	const {
+		fileName, sheetName, cols, rows, skipRows, setSkipRows, setRows, map,
+		posColIndex, setPosIndex, features, setFeatures, valueColIndex, setValueColIndex, mapStyle, setMapStyle,
+	} = useStore()
 	
 	
 	const selectColTitle = cols?.length ? '选择坐标列' : '当前没有可选列'
