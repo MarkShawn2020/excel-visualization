@@ -45,7 +45,7 @@ export const createVisualizationSlice_Immer: StoreSlice<VisualizationSlice> = (s
 	
 	markers: {},
 	addMarker: (id, val) => set((state => {
-		if (!id in state.markers) state.markers[id] = val
+		if (!(id in state.markers)) state.markers[id] = val
 	})),
 	delMarker: (id) => set((state => {
 		const ref = state.markers[id]

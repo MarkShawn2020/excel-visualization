@@ -19,13 +19,13 @@ const Visualization: React.FC = () => {
 	const [zoom, setZoom] = useState<number>(INITIAL_VIEW_STATE.zoom)
 	
 	const { colIndex, mapStyle, cols, clusterMode } = useStore()
-	const property = cols[colIndex.measure]?.name
 	
 	const features = useFeatures()
 	const data = featureCollection(features) // turf 里有，geojson里没有，ref: https://github.com/Turfjs/turf/issues/2301
 	
 	const [hoveredFeature, setHoveredFeature] = useState<MapGeoJSONFeature | null>(null)
 	
+	const property = colIndex.measure ? cols[colIndex.measure].name : undefined
 	console.log({ features, property, clusterMode, hoveredFeature })
 	
 	return (
@@ -36,7 +36,7 @@ const Visualization: React.FC = () => {
 			]}
 			initialViewState={INITIAL_VIEW_STATE}
 			minZoom={INITIAL_ZOOM}
-			projection={MAP_PROJECTION}
+			projection={{name: MAP_PROJECTION}}
 			mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
 			mapStyle={mapStyle}
 			onClick={(e) => {
@@ -55,7 +55,7 @@ const Visualization: React.FC = () => {
 				setHoveredFeature(null)
 			}}
 			onRender={() => {
-				const newBounds = refMap.current?.getBounds().toArray().flat()
+				const newBounds = refMap.current?.getBounds().toArray().flat() as BBox | undefined
 				if (!_.isEqual(newBounds, bounds)) setBounds(newBounds)
 				
 				const newZoom = refMap.current?.getZoom()

@@ -1,7 +1,7 @@
 import { Layer, Source, SourceProps } from 'react-map-gl'
 import { CLUSTER_RADIUS, MAP_LAYERS, MAP_MAX_LG_CIRCLE_SIZE, MAP_MIN_LG_CIRCLE_SIZE, MAP_SOURCE_ID } from '@/config'
 import { case1, case2, case3, case4, circleLayerProps, colors, symbolLayerProps } from '@/config/categroy'
-import { featureCollection } from '@turf/helpers'
+import { feature, featureCollection } from '@turf/helpers'
 import { IFeature } from '@/ds'
 import _ from 'lodash'
 import { useStore } from '@/store'
@@ -16,7 +16,7 @@ export const BasicLgLayer = ({ features, property }: {
 	const max = _.max(values)
 	console.log('[BasicLgLayer] ', { property, isNumeric, max, values })
 	const { colors, colIndex, cols } = useStore()
-	const catName = colIndex.category >= 0 ? cols[colIndex.category].name : null
+	const catName = colIndex.category ? cols[colIndex.category].name : null
 	console.log({ cols, colIndex, catName })
 	
 	return (
